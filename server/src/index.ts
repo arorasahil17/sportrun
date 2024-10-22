@@ -8,6 +8,7 @@ const app: Express = express();
 const port = 3000;
 
 app.use(express.static(path.resolve(__dirname, "uploads")));
+app.use(express.static(path.resolve(__dirname, "dist")));
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -19,8 +20,8 @@ app.use(express.json());
 app.use("/api/v1", userRoutes);
 app.use(errorHandler);
 
-app.get("/", (_request: Request, response: Response) => {
-  response.send("Hello World!");
+app.get("*", (_request: Request, response: Response) => {
+  return response.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 app.listen(port, () => console.log(`Server is running at ${port}`));
