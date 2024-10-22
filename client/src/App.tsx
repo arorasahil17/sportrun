@@ -1,35 +1,53 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import DefaultLayout from "./layout/DefaultLayout";
+import Home from "./pages/Home";
+import { routes } from "./routes";
+import { Suspense, useEffect } from "react";
+import Loader from "./common/Loader";
+import { Toaster } from "react-hot-toast";
+import useAuth from "./hooks/user/useAuth";
+import { useDispatch } from "react-redux";
+import { setUser } from "./lib/redux/slices/userSlice";
 
-function App() {
-  const [count, setCount] = useState(0);
+export default function App() {
+  const dispatch = useDispatch();
+  const { data, isLoading, isError, error } = useAuth();
+
+  useEffect(() => {
+    if (isError) {
+      console.log(error);
+    }
+
+    if (data) {
+      dispatch(setUser(data));
+    }
+  }, [data, isError, error, dispatch]);
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Toaster position="top-center" />
+      <Router>
+        <Routes>
+          <Route path="/" element={<DefaultLayout />}>
+            <Route index element={<Home />} />
+            {routes.map(({ name, path, component: Component }) => (
+              <Route
+                key={name}
+                path={path}
+                element={
+                  <Suspense fallback={<Loader />}>
+                    <Component />
+                  </Suspense>
+                }
+              />
+            ))}
+          </Route>
+        </Routes>
+      </Router>
     </>
   );
 }
-
-export default App;

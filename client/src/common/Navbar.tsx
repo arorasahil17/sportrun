@@ -2,9 +2,13 @@ import { useState } from "react";
 import { navLinks } from "../routes";
 import { menu, close } from "ionicons/icons";
 import { IonIcon } from "@ionic/react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { StoreState } from "../lib/redux/store";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user } = useSelector((state: StoreState) => state.userReducer);
 
   return (
     <header className="relative px-3 py-5">
@@ -27,7 +31,9 @@ const Navbar = () => {
                   key={name}
                   className="relative max-w-fit pr-3 md:pr-0 py-1 transition ease-in-out delay-150 hover:text-blue-500 after:bg-gray-400 after:absolute after:h-1 after:w-0 after:bottom-[-5px] after:left-0 hover:after:w-full after:transition-all after:delay-150"
                 >
-                  <a href={path}>{name}</a>
+                  <a href={path} className="uppercase">
+                    {name}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -39,15 +45,13 @@ const Navbar = () => {
           <div className="hidden sm:flex items-center justify-center space-x-4">
             <div className="flex space-x-4">
               {/* User Icon */}
-              <a
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to={user ? "/dashboard" : "/login"}
                 className="w-10 h-10 rounded-full ease-in-out delay-150  bg-[#FD346E] hover:bg-[#7F54B3]  hover:scale-100 hover:-translate-y-1  text-white flex items-center justify-center hover:opacity-90 transition"
               >
                 <i className="fas fa-user-alt text-lg"></i>
                 <span className="sr-only">User-alt</span>
-              </a>
+              </Link>
 
               {/* Cart Icon */}
               <a

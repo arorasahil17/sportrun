@@ -1,9 +1,20 @@
 import express, { Request, Response, Express } from "express";
 import { errorHandler } from "./middlewares/errorHandler";
+import cors from "cors";
+import userRoutes from "./routes/userRoutes";
+import cookieParser from "cookie-parser";
+import path from "path";
 const app: Express = express();
 const port = 3000;
-import userRoutes from "./routes/userRoutes";
 
+app.use(express.static(path.resolve(__dirname, "uploads")));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+app.use(cookieParser());
 app.use(express.json());
 app.use("/api/v1", userRoutes);
 app.use(errorHandler);

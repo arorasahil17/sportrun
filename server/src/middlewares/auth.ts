@@ -20,6 +20,7 @@ export const authenticateUser = (
   const token =
     request.cookies.token || request.headers.authorization?.split(" ")[1];
 
+  console.log(token);
   if (!token) {
     const error: AsyncError = {
       statusCode: 401,

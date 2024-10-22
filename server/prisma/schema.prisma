@@ -8,22 +8,43 @@ datasource db {
 }
 
 model User {
-  id               Int       @id @default(autoincrement())
+  id               Int           @id @default(autoincrement())
   name             String
-  email            String    @unique
+  email            String        @unique
   password         String
-  username         String    @unique
+  username         String        @unique
   resetToken       String? // Token for resetting the password
   resetTokenExpiry DateTime? // Expiration time for the token
+  Subscription     Subscription?
 }
 
 model Course {
-  id             Int     @id @default(autoincrement())
+  id             Int           @id @default(autoincrement())
   title          String
   description    String
   price          Float
-  demoVideoUrl   String  @map("demo_video_link")
-  courseVideoUrl String  @map("course_video_link")
+  demoVideoUrl   String        @map("demo_video_link")
+  courseVideoUrl String        @map("course_video_link")
   fileName       String
-  isPublished    Boolean @default(true)
+  isPublished    Boolean       @default(true)
+  Subscription   Subscription?
+}
+
+enum SubscriptionPlanDuration {
+  WEEKLY
+  MONTHLY
+  YEARLY
+}
+
+model Subscription {
+  id           Int                      @id @default(autoincrement())
+  userId       Int                      @unique
+  user         User                     @relation(fields: [userId], references: [id])
+  courseId     Int                      @unique
+  course       Course                   @relation(fields: [courseId], references: [id])
+  price        Float
+  purchaseDate DateTime
+  startDate    DateTime
+  endDate      DateTime?
+  planDuration SubscriptionPlanDuration
 }

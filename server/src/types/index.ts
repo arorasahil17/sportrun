@@ -8,7 +8,8 @@ export interface AsyncError {
 }
 
 export interface UserInputs {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -24,3 +25,17 @@ export interface AuthenticatedRequest extends Request {
 }
 
 export interface CourseInputs extends Course {}
+
+enum SubscriptionPlanDuration {
+  WEEKLY = "WEEKLY",
+  MONTHLY = "MONTHLY",
+  YEARLY = "YEARLY",
+}
+
+export interface SubscriptionInputs {
+  id?: number;
+  userId: number;
+  courseId: number;
+  planDuration: SubscriptionPlanDuration;
+  price: number;
+}

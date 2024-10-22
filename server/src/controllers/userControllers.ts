@@ -13,7 +13,7 @@ import jwt from "jsonwebtoken";
 export const signUp = asyncHandler(
   async (request: Request, response: Response, next: NextFunction) => {
     // Destructure inputs from the request body
-    const { name, password, email, username, confirmPassword } =
+    const { firstName, lastName, password, email, username, confirmPassword } =
       request.body as UserInputs;
 
     // Check if a user already exists with the given email or username
@@ -60,7 +60,7 @@ export const signUp = asyncHandler(
     // Create a new user record in the database
     const user = await prisma.user.create({
       data: {
-        name,
+        name: `${firstName} ${lastName}`,
         email,
         username,
         password: hashedPassword,
