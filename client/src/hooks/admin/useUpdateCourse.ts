@@ -10,6 +10,17 @@ import { ApiResponse } from "../../types";
 import toast from "react-hot-toast";
 import { useCallback } from "react";
 
+/**
+ * A custom hook for handling the course update form with validation and state management.
+ * @param id The id of the course to update.
+ * @returns An object containing the following properties:
+ * - {function} register - A function to register input fields in the form.
+ * - {object} errors - An object containing any validation errors.
+ * - {function} handleSubmit - A function to handle form submission.
+ * - {function} onsubmit - A function to be called when the form is submitted.
+ * - {function} reset - A function to reset the form fields.
+ * - {string} status - The current status of the mutation (e.g., "idle", "loading", "error", "success").
+ */
 const useUpdateCourse = (id: number) => {
   const {
     register,
