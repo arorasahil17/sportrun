@@ -9,14 +9,14 @@ A full-stack web application for learning and teaching online.
 - File upload and download for course materials
 - User profile management
 - Course enrollment and unenrollment
-- More will be updated
 
 ## Technologies Used
 
 - Frontend: React, TypeScript, Vite, Tailwind CSS
 - Backend: Node.js, Express, Prisma, MySQL
 - Authentication: JSON Web Tokens
-- More will be updated
+- Data fetching and caching: Tanstach React Query
+- State managment: Redux js toolkit
 
 ## How to Run
 
