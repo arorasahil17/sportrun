@@ -13,3 +13,16 @@ export const fetchAllCourses = async (): Promise<Course[] | null> => {
     return null;
   }
 };
+
+export const fetchCourse = async (id: number): Promise<Course | null> => {
+  try {
+    const response = await apiClient.get<ApiResponse<any>>(`/course/${id}`);
+    if (response.data.success) {
+      return response.data.data;
+    }
+    return null;
+  } catch (error) {
+    handleError(error);
+    return null;
+  }
+};

@@ -1,5 +1,5 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { CourseFormData, courseSchema } from "../../schemas/adminSchema";
+import { CourseFormData, addCourseSchema } from "../../schemas/adminSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { ApiResponse } from "../../types";
@@ -21,7 +21,7 @@ const useCreateCourse = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CourseFormData>({ resolver: zodResolver(courseSchema) });
+  } = useForm<CourseFormData>({ resolver: zodResolver(addCourseSchema) });
 
   const { mutate, status } = useMutation<
     ApiResponse<any> | null,

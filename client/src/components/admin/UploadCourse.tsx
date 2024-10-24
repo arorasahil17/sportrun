@@ -5,8 +5,6 @@ function UploadCourse() {
   const { register, errors, handleSubmit, onsubmit, status } =
     useCreateCourse();
 
-  console.log("errors", errors);
-
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold mb-4">Upload Course Details</h2>

@@ -26,7 +26,7 @@ const Sidebar = () => {
             </li>
             <li>
               <Link
-                to="/admin/course"
+                to="/admin/add/course"
                 className={`block py-2 px-4 text-center md:text-left ${
                   pathname === "/admin/course" ? "bg-[#3e64de] text-white" : ""
                 } hover:bg-[#3e64de] hover:text-white`}
@@ -55,8 +55,8 @@ const Sidebar = () => {
               </a>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/admin/courses"
                 className={`block py-2 px-4 text-center md:text-left ${
                   pathname === "admincourse" ? "bg-[#3e64de] text-white" : ""
                 } hover:bg-[#3e64de] hover:text-white`}
@@ -66,7 +66,7 @@ const Sidebar = () => {
                 <i className="md:hidden">
                   <FaBookOpen />
                 </i>
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

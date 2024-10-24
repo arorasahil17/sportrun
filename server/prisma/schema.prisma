@@ -27,7 +27,6 @@ model Course {
   demoVideoUrl   String        @map("demo_video_link")
   courseVideoUrl String        @map("course_video_link")
   thumbnailUrl   String        @map("thumbnail_url")
-  fileName       String
   isPublished    Boolean       @default(true)
   Subscription   Subscription?
 }
