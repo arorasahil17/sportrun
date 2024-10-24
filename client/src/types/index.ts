@@ -27,10 +27,12 @@ export interface User {
 }
 
 export interface Course {
+  id: number;
   title: string;
-  totalLessons: number;
-  completedLessons: number;
-  progress: number;
-  status: string;
-  thumbnail: string;
+  price: number;
+  offPrice: number;
+  thumbnailUrl: string;
+  description: string;
+  demoVideoUrl: string;
+  courseVideoUrl: string;
 }

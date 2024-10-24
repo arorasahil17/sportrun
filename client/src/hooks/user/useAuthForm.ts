@@ -72,8 +72,8 @@ const useAuthForm = <T extends UserSchemaType | UserLoginSchemaType>(
         toast.error(args.errorMessage);
       }
     },
-    onError: (error: any) => {
-      toast.error(error || "An error occurred. Please try again.");
+    onError: (error) => {
+      toast.error(error.message || "An error occurred. Please try again.");
     },
   });
 

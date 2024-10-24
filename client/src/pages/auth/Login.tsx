@@ -72,7 +72,7 @@ const Login = () => {
               className="w-full bg-[#3e64de]  text-white py-2 px-3 rounded"
               type="submit"
             >
-              <a href="/adminpanel">Login</a>
+              Login
             </button>
           </div>
         </form>

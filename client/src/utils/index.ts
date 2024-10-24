@@ -4,9 +4,6 @@ import axios from "axios";
 export const apiClient = axios.create({
   baseURL: `${import.meta.env.VITE_API_URL}/api/v1`,
   withCredentials: true,
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 export const validateRequiredString = (message: string): z.ZodString =>
@@ -32,5 +29,5 @@ export const handleError = (error: any) => {
     error.response?.data?.message ??
     "An unexpected error occurred. Please try again.";
 
-  throw errorMessage;
+  throw new Error(errorMessage);
 };

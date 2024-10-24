@@ -2,6 +2,7 @@ import express, { Request, Response, Express } from "express";
 import { errorHandler } from "./middlewares/errorHandler";
 import cors from "cors";
 import userRoutes from "./routes/userRoutes";
+import courseRoutes from "./routes/courseRoutes";
 import cookieParser from "cookie-parser";
 import path from "path";
 const app: Express = express();
@@ -18,6 +19,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/v1", userRoutes);
+app.use("/api/v1", courseRoutes);
 app.use(errorHandler);
 
 app.get("*", (_request: Request, response: Response) => {
