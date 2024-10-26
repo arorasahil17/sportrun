@@ -3,6 +3,7 @@ import { errorHandler } from "./middlewares/errorHandler";
 import cors from "cors";
 import userRoutes from "./routes/userRoutes";
 import courseRoutes from "./routes/courseRoutes";
+import subscriptionRoutes from "./routes/subscriptionRoutes";
 import cookieParser from "cookie-parser";
 import path from "path";
 const app: Express = express();
@@ -20,6 +21,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/api/v1", userRoutes);
 app.use("/api/v1", courseRoutes);
+app.use("/api/v1", subscriptionRoutes);
 app.use(errorHandler);
 
 app.get("*", (_request: Request, response: Response) => {

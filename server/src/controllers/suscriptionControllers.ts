@@ -1,31 +1,29 @@
 import asyncHandler from "../middlewares/asyncHandler";
 import { AsyncError, SubscriptionInputs } from "../types";
 import { Request, Response, NextFunction } from "express";
-import { addDays, addMonths, addYears } from "date-fns";
+import { addDays } from "date-fns";
 import { prisma } from "../utils";
 
-// Helper function to calculate end date based on plan duration
-const calculateEndDate = (startDate: Date, planDuration: string): Date => {
-  switch (planDuration) {
-    case "WEEKLY":
-      return addDays(startDate, 7); // Adds 7 days for weekly plan
-    case "MONTHLY":
-      return addMonths(startDate, 1); // Adds 1 month for monthly plan
-    case "YEARLY":
-      return addYears(startDate, 1); // Adds 1 year for yearly plan
-    default:
-      throw new Error("Invalid plan duration");
-  }
+const calculateEndDate = (startDate: Date, numberOfDays: number): Date => {
+  return addDays(startDate, numberOfDays);
 };
 
 export const createSubscription = asyncHandler(
   async (request: Request, response: Response, next: NextFunction) => {
-    const { userId, courseId, planDuration, price } =
+    const { userId, courseId, numberOfDays, price } =
       request.body as SubscriptionInputs;
+
+    if (typeof numberOfDays !== "number" || numberOfDays <= 0) {
+      const error: AsyncError = {
+        statusCode: 400,
+        message: "Invalid number of days",
+      };
+      return next(error);
+    }
 
     const purchaseDate = new Date();
     const startDate = purchaseDate;
-    const endDate = calculateEndDate(startDate, planDuration);
+    const endDate = calculateEndDate(startDate, numberOfDays);
 
     const newSubscription = await prisma.subscription.create({
       data: {
@@ -39,7 +37,7 @@ export const createSubscription = asyncHandler(
         purchaseDate,
         startDate,
         endDate,
-        planDuration,
+        numberOfDays,
       },
     });
 
@@ -47,7 +45,7 @@ export const createSubscription = asyncHandler(
       const error: AsyncError = {
         statusCode: 400,
         message:
-          "Something went wrong while subscribing please try again later",
+          "Something went wrong while subscribing, please try again later",
       };
       return next(error);
     }
@@ -57,5 +55,24 @@ export const createSubscription = asyncHandler(
       message: "Subscription created successfully",
       data: newSubscription,
     });
+  }
+);
+
+export const fetchAllSubscriptions = asyncHandler(
+  async (_request: Request, response: Response, next: NextFunction) => {
+    const subscriptions = await prisma.subscription.findMany({
+      include: { user: true },
+    });
+
+    if (!subscriptions) {
+      const error: AsyncError = {
+        statusCode: 404,
+        message: "No subscriptions found",
+      };
+
+      return next(error);
+    }
+
+    return response.status(200).json({ success: true, data: subscriptions });
   }
 );

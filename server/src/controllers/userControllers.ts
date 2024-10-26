@@ -145,6 +145,13 @@ export const checkAuth = asyncHandler(
       // Query the database to find the user
       const user = await prisma.user.findUnique({
         where: { email },
+        include: {
+          Subscription: {
+            include: {
+              course: true,
+            },
+          },
+        },
       });
 
       // If user doesn't exist, return a 404 error

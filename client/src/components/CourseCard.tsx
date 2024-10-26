@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Course } from "../types";
 
 interface CourseCardProps {
@@ -38,9 +39,12 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           )}
         </div>
         <div>
-          <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full">
-            Enroll Now
-          </button>
+          <Link
+            to={`/checkout/${course.id}`}
+            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full"
+          >
+            Subscribe
+          </Link>
         </div>
 
         {/* <div>

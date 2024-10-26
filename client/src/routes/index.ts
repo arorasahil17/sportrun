@@ -6,6 +6,10 @@ const Dashboard = React.lazy(() => import("../pages/User/Dashboard"));
 const Profile = React.lazy(() => import("../components/Dashboard/Profile"));
 const Courses = React.lazy(() => import("../pages/Courses"));
 const Admin = React.lazy(() => import("../pages/admin/Admin"));
+const Checkout = React.lazy(() => import("../pages/Checkout"));
+const EnrolledCourses = React.lazy(
+  () => import("../pages/User/EnrolledCourses")
+);
 
 export const navLinks: NavLinks = [
   { name: "home", path: "/" },
@@ -22,9 +26,10 @@ export const routes: Routes = [
   { name: "Dashboard", path: "/dashboard/*", component: Dashboard },
   { name: "Admin", path: "/admin/*", component: Admin },
   { name: "Courses", path: "/courses", component: Courses },
+  { name: "Checkout", path: "/checkout/:id", component: Checkout },
 ];
 
 export const userDashboardRoutes: Routes = [
   { name: "Profile", path: "/profile", component: Profile },
-  // { name: "Enrolled Courses", path: "/courses", component: Courses },
+  { name: "Enrolled Courses", path: "/courses", component: EnrolledCourses },
 ];

@@ -24,6 +24,7 @@ export interface User {
   name: string;
   email: string;
   username: string;
+  subscription: Subscription;
 }
 
 export interface Course {
@@ -35,4 +36,17 @@ export interface Course {
   description: string;
   demoVideoUrl: string;
   courseVideoUrl: string;
+}
+
+export interface Subscription {
+  id: number;
+  userId: number;
+  user: User;
+  courseId: number;
+  course: Course[];
+  price: number;
+  startDate: Date;
+  endDate: Date;
+  purchaseDate: Date;
+  numberOfDays: Date;
 }

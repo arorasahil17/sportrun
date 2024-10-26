@@ -37,6 +37,6 @@ export interface SubscriptionInputs {
   userId: number;
   courseId: number;
   offPrice: number;
-  planDuration: SubscriptionPlanDuration;
+  numberOfDays: SubscriptionPlanDuration;
   price: number;
 }

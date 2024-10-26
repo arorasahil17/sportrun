@@ -9,7 +9,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (status === "success") {
-      navigate("/");
+      navigate("/login");
     }
   }, [status]);
 
