@@ -14,9 +14,21 @@ const Signup = () => {
   }, [status]);
 
   return (
-    <main className="main bg-white px-6 md:px-16 m-6">
-      <div className="w-full border border-black-100 shadow-xl border-xl max-w-xl p-10 mx-auto lg:my-16">
-        <form className="border-b-2 py-3" onSubmit={handleSubmit(onsubmit)}>
+    <>
+       <main
+       style={{
+         backgroundImage: `url('./Background.jpg')`,
+         backgroundSize: "cover",
+         backgroundPosition: "center",
+         minHeight: "100vh",
+         display: "flex",
+         alignItems: "center",
+         justifyContent: "center",
+       }}
+     >
+       <div className="main w-full px-6 md:px-20 m-6">
+         <div className="w-full max-w-2xl border border-gray-200 shadow-2xl rounded-lg p-10 mx-auto bg-white lg:my-16">
+         <form className="border-b-2 py-3" onSubmit={handleSubmit(onsubmit)}>
           <h1 className="text-xl mb-2">Create Your Account</h1>
 
           <div className="mb-4">
@@ -27,7 +39,7 @@ const Signup = () => {
               First Name
             </label>
             <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500"
+              className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-red-500"
               type="text"
               id="firstName"
               {...register("firstName")}
@@ -45,7 +57,7 @@ const Signup = () => {
               Last Name
             </label>
             <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500"
+              className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-red-500"
               type="text"
               id="lastName"
               {...register("lastName")}
@@ -63,7 +75,7 @@ const Signup = () => {
               Username
             </label>
             <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500"
+              className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-red-500"
               type="text"
               id="username"
               {...register("username")}
@@ -78,7 +90,7 @@ const Signup = () => {
               Email
             </label>
             <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500"
+              className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-red-500"
               type="email"
               id="email"
               {...register("email")}
@@ -96,7 +108,7 @@ const Signup = () => {
               Password
             </label>
             <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500"
+              className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-red-500"
               type="password"
               id="password"
               {...register("password")}
@@ -114,7 +126,7 @@ const Signup = () => {
               Confirm Password
             </label>
             <input
-              className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-gray-500"
+              className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-red-500"
               type="password"
               id="confirmPassword"
               {...register("confirmPassword")}
@@ -126,7 +138,7 @@ const Signup = () => {
 
           <div>
             <button
-              className="w-full bg-[#3e64de]  text-white py-2 px-3 rounded"
+              className="w-full bg-red-500 hover:bg-[#FF0000]  text-white py-2 px-3 rounded"
               type="submit"
             >
               {status === "pending" ? "Signing up..." : "Sign up"}
@@ -135,12 +147,14 @@ const Signup = () => {
         </form>
 
         <div className="mt-2 mb-3">
-          <Link to="/login" className="text-sm text-[#3e64de]  hover:underline">
+          <Link to="/login" className="text-sm text-red-500 hover:text-[#FF0000]  hover:underline">
             Already have an account? Log in
           </Link>
         </div>
-      </div>
-    </main>
+         </div>
+       </div>
+     </main>
+     </>
   );
 };
 

@@ -28,8 +28,8 @@ const Sidebar = () => {
               <Link
                 to="/dashboard"
                 className={`block py-2 px-4 text-center md:text-left ${
-                  pathname === "/dashboard" ? "bg-[#3e64de] text-white" : ""
-                } hover:bg-[#3e64de] hover:text-white`}
+                  pathname === "/dashboard" ? "bg-red-500 text-white" : ""
+                } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("Dashboard")}
               >
                 <span className="md:inline hidden">Dashboard</span>
@@ -41,9 +41,9 @@ const Sidebar = () => {
                 to="/dashboard/profile"
                 className={`block py-2 px-4 text-center md:text-left ${
                   pathname === "/dashboard/profile"
-                    ? "bg-[#3e64de] text-white"
+                    ? "bg-red-500 text-white"
                     : ""
-                } hover:bg-[#3e64de] hover:text-white`}
+                } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("My Profile")}
               >
                 <span className="md:inline hidden">My Profile</span>
@@ -55,9 +55,9 @@ const Sidebar = () => {
                 to="/dashboard/courses"
                 className={`block py-2 px-4 text-center md:text-left ${
                   pathname === "/dashboard/courses"
-                    ? "bg-[#3e64de] text-white"
+                    ? "bg-red-500 text-white"
                     : ""
-                } hover:bg-[#3e64de] hover:text-white`}
+                } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("Enrolled Courses")}
               >
                 <span className="md:inline hidden">Enrolled Courses</span>
@@ -68,8 +68,8 @@ const Sidebar = () => {
               <a
                 href="#"
                 className={`block py-2 px-4 text-center md:text-left ${
-                  pathname === "Settings" ? "bg-[#3e64de] text-white" : ""
-                } hover:bg-[#3e64de] hover:text-white`}
+                  pathname === "Settings" ? "bg-red-500 text-white" : ""
+                } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("Settings")}
               >
                 <span className="md:inline hidden">Settings</span>
