@@ -41,6 +41,17 @@ export const createSubscription = asyncHandler(
       },
     });
 
+    await prisma.course.update({
+      where: {
+        id: courseId,
+      },
+      data: {
+        user: {
+          connect: { id: userId },
+        },
+      },
+    });
+
     if (!newSubscription) {
       const error: AsyncError = {
         statusCode: 400,

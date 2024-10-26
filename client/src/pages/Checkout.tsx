@@ -27,21 +27,12 @@ const Checkout = () => {
 
   const userId = useSelector((state: StoreState) => state.userReducer.user?.id);
 
-  console.log("userId", userId);
-
-  const {
-    handleSubmit,
-    errors,
-    onsubmit,
-    isPending,
-    reset,
-    getValues,
-    setValue,
-  } = useCreateRecord<SubscriptionInputs>({
-    mutationFn: createRecord,
-    validationSchema: subscriptionSchema,
-    path: "/subscribe",
-  });
+  const { handleSubmit, errors, onsubmit, isPending, reset, getValues } =
+    useCreateRecord<SubscriptionInputs>({
+      mutationFn: createRecord,
+      validationSchema: subscriptionSchema,
+      path: "/subscribe",
+    });
 
   const handleDaysChange = (days: number) => {
     setDays(days);
@@ -56,16 +47,7 @@ const Checkout = () => {
         numberOfDays: days,
       });
     }
-  }, [userId, courseId, course]);
-
-  useEffect(() => {
-    if (course) {
-      setValue("numberOfDays", days);
-      setValue("price", course.offPrice * days);
-    }
-  }, [days]);
-
-  console.log("errors", errors);
+  }, [userId, courseId, course, days]);
 
   return (
     <CheckoutForm

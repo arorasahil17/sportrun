@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
 import { Course } from "../types";
 
 interface CourseCardProps {
   course: Course;
+  subscribeCourse: (courseId: number) => void;
 }
 
-const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
+const CourseCard: React.FC<CourseCardProps> = ({ course, subscribeCourse }) => {
   return (
     <div className="w-full bg-white shadow-md rounded-lg overflow-hidden max-w-xs mx-auto my-4">
       <img
@@ -39,12 +39,12 @@ const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
           )}
         </div>
         <div>
-          <Link
-            to={`/checkout/${course.id}`}
+          <button
+            onClick={() => subscribeCourse(course.id)}
             className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full"
           >
             Subscribe
-          </Link>
+          </button>
         </div>
 
         {/* <div>

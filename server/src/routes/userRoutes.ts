@@ -1,6 +1,7 @@
 import {
   checkAuth,
   forgetPassword,
+  logoutUser,
   resetPassword,
   signIn,
   signUp,
@@ -13,6 +14,7 @@ router
   .post("/login", signIn)
   .get("/check/auth", authenticateUser, checkAuth)
   .post("/forget-password", forgetPassword)
-  .post("/reset-password/:token", resetPassword);
+  .post("/reset-password/:token", resetPassword)
+  .post("/logout", authenticateUser, logoutUser);
 
 export default router;

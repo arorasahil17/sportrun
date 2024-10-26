@@ -146,11 +146,12 @@ export const checkAuth = asyncHandler(
       const user = await prisma.user.findUnique({
         where: { email },
         include: {
-          Subscription: {
+          subscriptions: {
             include: {
               course: true,
             },
           },
+          enrolledCourses: true,
         },
       });
 
@@ -287,5 +288,14 @@ export const resetPassword = asyncHandler(
       success: true,
       message: "Your password has been reset successfully.",
     });
+  }
+);
+
+export const logoutUser = asyncHandler(
+  async (_request: Request, response: Response, _next: NextFunction) => {
+    response.clearCookie("token");
+    return response
+      .status(200)
+      .json({ success: true, message: "Logout successfully" });
   }
 );

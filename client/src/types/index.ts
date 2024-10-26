@@ -24,7 +24,8 @@ export interface User {
   name: string;
   email: string;
   username: string;
-  subscription: Subscription;
+  subscriptions: Subscription[];
+  enrolledCourses: Course[];
 }
 
 export interface Course {

@@ -2,10 +2,12 @@ import { useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { StoreState } from "../../lib/redux/store";
+import useLogout from "../../hooks/user/useLogout";
 
 const Sidebar = () => {
   const { pathname } = useLocation();
   const user = useSelector((state: StoreState) => state.userReducer.user);
+  const { mutate } = useLogout();
 
   return (
     <div className="flex min-h-screen border rounded-xl">
@@ -75,6 +77,17 @@ const Sidebar = () => {
                 <span className="md:inline hidden">Settings</span>
                 <i className="fas fa-cog md:hidden"></i>
               </a>
+            </li>
+            <li>
+              <button
+                className={`block py-2 px-4 text-center md:text-left ${
+                  pathname === "Settings" ? "bg-[#3e64de] text-white" : ""
+                } hover:bg-[#3e64de] hover:text-white`}
+                onClick={() => mutate()}
+              >
+                <span className="md:inline hidden">Logout</span>
+                <i className="fas fa-cog md:hidden"></i>
+              </button>
             </li>
           </ul>
         </nav>

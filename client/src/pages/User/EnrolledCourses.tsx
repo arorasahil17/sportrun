@@ -9,7 +9,9 @@ import { StoreState } from "../../lib/redux/store";
 
 const EnrolledCourses = () => {
   const [activeTab, setActiveTab] = useState("enrolled"); // Default tab
-  const courses = useSelector((state: StoreState) => state.userReducer.user);
+  const courses = useSelector(
+    (state: StoreState) => state.userReducer.user?.enrolledCourses
+  );
 
   //   const completedCourses = [
   //     {
