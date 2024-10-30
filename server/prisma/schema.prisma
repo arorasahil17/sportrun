@@ -32,6 +32,7 @@ model Course {
   subscriptions  Subscription[]
   user           User?          @relation(fields: [userId], references: [id])
   userId         Int?
+  Sessions       Sessions?
 }
 
 enum SubscriptionPlanDuration {
@@ -51,4 +52,14 @@ model Subscription {
   startDate    DateTime
   endDate      DateTime?
   numberOfDays Int
+}
+
+model Sessions {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  sessionTime DateTime @map("session_time")
+  sessionLink String   @map("meeting_link")
+  courseId    Int      @unique
+  course      Course?  @relation(fields: [courseId], references: [id], onDelete: Cascade)
 }

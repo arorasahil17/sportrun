@@ -7,7 +7,7 @@ import path from "path";
 
 export const addCourse = asyncHandler(
   async (request: Request, response: Response, next: NextFunction) => {
-    const SERVER_URL = process.env.SERVER_URL || "http://localhost:3000";
+    // const SERVER_URL = process.env.SERVER_URL || "http://localhost:3000";
 
     const { title, description, price, offPrice } =
       request.body as CourseInputs;
@@ -27,9 +27,9 @@ export const addCourse = asyncHandler(
     }
 
     // Construct video URLs from the saved filenames
-    const demoVideoUrl = `${SERVER_URL}/${files.demoVideo[0].filename}`;
-    const courseVideoUrl = `${SERVER_URL}/${files.courseVideo[0].filename}`;
-    const thumbnailUrl = `${SERVER_URL}/${files.thumbnail[0].filename}`;
+    const demoVideoUrl = `${files.demoVideo[0].filename}`;
+    const courseVideoUrl = `${files.courseVideo[0].filename}`;
+    const thumbnailUrl = `${files.thumbnail[0].filename}`;
 
     const newCourse = await prisma.course.create({
       data: {

@@ -4,6 +4,7 @@ import cors from "cors";
 import userRoutes from "./routes/userRoutes";
 import courseRoutes from "./routes/courseRoutes";
 import subscriptionRoutes from "./routes/subscriptionRoutes";
+import sessionRoutes from "./routes/sessionRoutes";
 import cookieParser from "cookie-parser";
 import path from "path";
 const app: Express = express();
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use("/api/v1", userRoutes);
 app.use("/api/v1", courseRoutes);
 app.use("/api/v1", subscriptionRoutes);
+app.use("/api/v1", sessionRoutes);
 app.use(errorHandler);
 
 app.get("*", (_request: Request, response: Response) => {

@@ -40,3 +40,12 @@ export interface SubscriptionInputs {
   numberOfDays: SubscriptionPlanDuration;
   price: number;
 }
+
+export interface SessionInputs {
+  id: number;
+  title: string;
+  description: string;
+  sessionLink: string;
+  sessionTime: Date;
+  courseId: number;
+}
