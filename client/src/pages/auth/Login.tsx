@@ -29,20 +29,20 @@ const Login = () => {
       }}
     >
       <div className="main w-full px-6 md:px-20 m-6">
-        <div className="w-full max-w-2xl border border-gray-200 shadow-2xl rounded-lg p-10 mx-auto bg-white lg:my-16">
+        <div className="w-full max-w-2xl border border-gray-200 shadow-2xl rounded-lg p-10 mx-auto bg-black lg:my-16">
           <form
             method="post"
             className="py-3"
             onSubmit={handleSubmit(onsubmit)}
           >
-            <h1 className="text-3xl font-semibold mb-8 text-center text-gray-800">
+            <h1 className="text-3xl font-semibold mb-8 text-center text-red-500">
               Welcome Back!
             </h1>
 
             <div className=" gap-6">
               <div className="mb-6">
                 <label
-                  className="block text-gray-700 text-sm font-medium mb-2"
+                  className="block text-white text-sm font-medium mb-2"
                   htmlFor="email"
                 >
                   Email
@@ -60,7 +60,7 @@ const Login = () => {
 
               <div className="mb-6">
                 <label
-                  className="block text-gray-700 text-sm font-medium mb-2"
+                  className="block text-white  text-sm font-medium mb-2"
                   htmlFor="password"
                 >
                   Password
@@ -83,7 +83,7 @@ const Login = () => {
                 type="checkbox"
                 id="remember"
               />
-              <label className="text-gray-600 text-sm" htmlFor="remember">
+              <label className="text-white  text-sm" htmlFor="remember">
                 Remember me
               </label>
             </div>

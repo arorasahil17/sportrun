@@ -6,16 +6,16 @@ function UploadCourse() {
     useCreateCourse();
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
+    <div className="bg-black border border-gray-200 p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
       <h2 className="text-2xl font-bold mb-4 text-red-500">
         Upload Course Details
       </h2>
       <form className="space-y-6" onSubmit={handleSubmit(onsubmit)}>
         <div>
-          <label className="block mb-2 text-red-500">Course Title</label>
+          <label className="block mb-2 text-white">Course Title</label>
           <input
             type="text"
-            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800"
+            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800 focus:outline-none focus:border-red-500"
             {...register("title")}
           />
           {errors.title?.message && (
@@ -24,10 +24,10 @@ function UploadCourse() {
         </div>
 
         <div>
-          <label className="block mb-2 text-red-500">Price</label>
+          <label className="block mb-2 text-white">Price</label>
           <input
             type="number"
-            className="block w-full p-2 mb-2 border border-gray-300 rounded text-gray-800"
+            className="block w-full p-2 mb-2 border border-gray-300 rounded text-gray-800 focus:outline-none focus:border-red-500"
             {...register("price")}
           />
           {errors.price?.message && (
@@ -36,10 +36,10 @@ function UploadCourse() {
         </div>
 
         <div>
-          <label className="block mb-2 text-red-500">Off Price</label>
+          <label className="block mb-2 text-white">Off Price</label>
           <input
             type="number"
-            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800"
+            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800 focus:outline-none focus:border-red-500"
             {...register("offPrice")}
           />
           {errors.offPrice?.message && (
@@ -48,10 +48,10 @@ function UploadCourse() {
         </div>
 
         <div>
-          <label className="block mb-2 text-red-500">Description</label>
+          <label className="block mb-2 text-white">Description</label>
           <input
             type="text"
-            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800"
+            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800 bg-gray-50 focus:outline-none focus:border-red-500"
             {...register("description")}
           />
           {errors.description?.message && (
@@ -60,10 +60,10 @@ function UploadCourse() {
         </div>
 
         <div>
-          <label className="block mb-2 text-red-500">Thumbnail</label>
+          <label className="block mb-2 text-white">Thumbnail</label>
           <input
             type="file"
-            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800"
+            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800 bg-gray-50 focus:outline-none focus:border-red-500"
             {...register("thumbnail")}
             accept="image/*"
           />
@@ -73,10 +73,10 @@ function UploadCourse() {
         </div>
 
         <div>
-          <label className="block mb-2 text-red-500">Course Video</label>
+          <label className="block mb-2 text-white">Course Video</label>
           <input
             type="file"
-            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800"
+            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800 bg-gray-50 focus:outline-none focus:border-red-500"
             {...register("courseVideo")}
             accept="video/*"
           />
@@ -86,10 +86,10 @@ function UploadCourse() {
         </div>
 
         <div>
-          <label className="block mb-2 text-red-500">Demo Video</label>
+          <label className="block mb-2 text-white">Demo Video</label>
           <input
             type="file"
-            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800"
+            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800 bg-gray-50 focus:outline-none focus:border-red-500"
             {...register("demoVideo")}
             accept="video/*"
           />

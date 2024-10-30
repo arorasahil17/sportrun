@@ -92,6 +92,8 @@ const Sidebar = () => {
           </ul>
         </nav>
       </aside>
+      {/* Divider */}
+      <div className="w-[0.10rem] bg-red-500"></div>
 
       {/* Main Content */}
       <main className="flex-1 bg-[#171E30] p-8">

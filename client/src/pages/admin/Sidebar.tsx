@@ -1,4 +1,4 @@
-import { FaUsers, FaUpload, FaBookOpen, FaShoppingCart } from "react-icons/fa";
+import { FaUsers, FaUpload, FaBookOpen, FaShoppingCart,FaCalendarAlt } from "react-icons/fa";
 import { Outlet, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -34,7 +34,7 @@ const Sidebar = () => {
                 } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("uploadcourse")}
               >
-                <span className="md:inline hidden">Upload Course</span>
+                <span className="md:inline hidden">Upload Video</span>
                 <i className="md:hidden">
                   <FaUpload />
                 </i>
@@ -50,7 +50,7 @@ const Sidebar = () => {
                 } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("purchasedcourse")}
               >
-                <span className="md:inline hidden">Purchased Course</span>
+                <span className="md:inline hidden">Purchased Subscription</span>
                 <i className="md:hidden">
                   <FaShoppingCart />
                 </i>
@@ -64,7 +64,7 @@ const Sidebar = () => {
                 } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("admincourse")}
               >
-                <span className="md:inline hidden">Admin Course</span>
+                <span className="md:inline hidden">All Videos</span>
                 <i className="md:hidden">
                   <FaBookOpen />
                 </i>
@@ -80,7 +80,7 @@ const Sidebar = () => {
               >
                 <span className="md:inline hidden">Add New Session</span>
                 <i className="md:hidden">
-                  <FaBookOpen />
+                <FaCalendarAlt />
                 </i>
               </Link>
             </li>
@@ -88,7 +88,9 @@ const Sidebar = () => {
         </nav>
       </aside>
 
-      {/* Main Content */}
+     {/* Divider */}
+     <div className="w-[0.10rem] bg-red-500"></div>
+
       {/* Main Content */}
       <main className="flex-1 bg-[#171E30] text-white p-8">
         <Outlet />

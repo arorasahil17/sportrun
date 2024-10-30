@@ -27,13 +27,13 @@ const Signup = () => {
         }}
       >
         <div className="main w-full px-6 md:px-20 m-6">
-          <div className="w-full max-w-2xl border border-gray-200 shadow-2xl rounded-lg p-10 mx-auto bg-white lg:my-16">
+          <div className="w-full max-w-2xl border border-gray-100 shadow-2xl rounded-lg p-10 mx-auto bg-black lg:my-16">
             <form className="border-b-2 py-3" onSubmit={handleSubmit(onsubmit)}>
-              <h1 className="text-xl mb-2">Create Your Account</h1>
+              <h1 className="text-xl mb-2 text-red-500">Create Your Account</h1>
 
               <div className="mb-4">
                 <label
-                  className="block text-gray-700 text-sm mb-2"
+                  className="block text-white text-sm mb-2"
                   htmlFor="firstName"
                 >
                   First Name
@@ -51,7 +51,7 @@ const Signup = () => {
 
               <div className="mb-4">
                 <label
-                  className="block text-gray-700 text-sm mb-2"
+                  className="block text-white text-sm mb-2"
                   htmlFor="lastName"
                 >
                   Last Name
@@ -69,7 +69,7 @@ const Signup = () => {
 
               <div className="mb-4">
                 <label
-                  className="block text-gray-700 text-sm mb-2"
+                  className="block text-white text-sm mb-2"
                   htmlFor="username"
                 >
                   Username
@@ -87,7 +87,7 @@ const Signup = () => {
 
               <div className="mb-4">
                 <label
-                  className="block text-gray-700 text-sm mb-2"
+                  className="block text-white text-sm mb-2"
                   htmlFor="email"
                 >
                   Email
@@ -105,7 +105,7 @@ const Signup = () => {
 
               <div className="mb-4">
                 <label
-                  className="block text-gray-700 text-sm mb-2"
+                  className="block text-white text-sm mb-2"
                   htmlFor="password"
                 >
                   Password
@@ -123,7 +123,7 @@ const Signup = () => {
 
               <div className="mb-4">
                 <label
-                  className="block text-gray-700 text-sm mb-2"
+                  className="block text-white text-sm mb-2"
                   htmlFor="confirmPassword"
                 >
                   Confirm Password

@@ -6,8 +6,19 @@ const ForgotPassword = () => {
   const { mutate, status } = useForgetPassword();
 
   return (
-    <div className="p-10 h-screen bg-[#0E1119] flex items-center justify-center ">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-xl">
+    <main
+    style={{
+      backgroundImage: `url('./Background.jpg')`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      minHeight: "100vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    <div className="p-10 h-screen flex items-center justify-center ">
+      <div className="bg-black border border-gray-200 text-white p-8 rounded-lg shadow-md w-full max-w-xl">
         <p className="py-4">
           Lost your password? Please enter your username or email address. You
           will receive a link to create a new password via email.
@@ -26,7 +37,7 @@ const ForgotPassword = () => {
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded outline-none"
+              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-red-500"
               required
               placeholder="Enter your email or name"
             />
@@ -43,6 +54,7 @@ const ForgotPassword = () => {
         {/* {message && <div className="mt-4 text-green-600">{message}</div>} */}
       </div>
     </div>
+    </main>
   );
 };
 

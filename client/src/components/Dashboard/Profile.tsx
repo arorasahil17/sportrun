@@ -1,14 +1,14 @@
 const Profile = () => {
   return (
     <>
-      <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl mx-auto mt-8">
+      <div className="bg-black border border-gray-200 shadow-lg rounded-lg p-8 max-w-4xl mx-auto mt-8">
         <h1 className="text-3xl font-bold mb-6 text-center text-red-600">
           My Profile
         </h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Registration Date */}
-          <div className="bg-gray-50 p-4 rounded-lg shadow-sm">
+          <div className="bg-gray-400 p-4 rounded-lg shadow-sm">
             <p className="text-red-500 font-medium">Registration Date</p>
             <p className="text-lg font-semibold">03/08/2023 10:58 PM</p>
           </div>
