@@ -15,7 +15,7 @@ function UploadCourse() {
           <label className="block mb-2 text-red-500">Course Title</label>
           <input
             type="text"
-            className="w-full p-2 border border-gray-300 rounded"
+            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800"
             {...register("title")}
           />
           {errors.title?.message && (
@@ -27,7 +27,7 @@ function UploadCourse() {
           <label className="block mb-2 text-red-500">Price</label>
           <input
             type="number"
-            className="w-full p-2 border border-gray-300 rounded"
+            className="block w-full p-2 mb-2 border border-gray-300 rounded text-gray-800"
             {...register("price")}
           />
           {errors.price?.message && (
@@ -39,7 +39,7 @@ function UploadCourse() {
           <label className="block mb-2 text-red-500">Off Price</label>
           <input
             type="number"
-            className="w-full p-2 border border-gray-300 rounded"
+            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800"
             {...register("offPrice")}
           />
           {errors.offPrice?.message && (
@@ -51,7 +51,7 @@ function UploadCourse() {
           <label className="block mb-2 text-red-500">Description</label>
           <input
             type="text"
-            className="w-full p-2 border border-gray-300 rounded"
+            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800"
             {...register("description")}
           />
           {errors.description?.message && (
@@ -63,7 +63,7 @@ function UploadCourse() {
           <label className="block mb-2 text-red-500">Thumbnail</label>
           <input
             type="file"
-            className="w-full p-2 border border-gray-300 rounded"
+            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800"
             {...register("thumbnail")}
             accept="image/*"
           />
@@ -76,7 +76,7 @@ function UploadCourse() {
           <label className="block mb-2 text-red-500">Course Video</label>
           <input
             type="file"
-            className="w-full p-2 border border-gray-300 rounded"
+            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800"
             {...register("courseVideo")}
             accept="video/*"
           />
@@ -89,7 +89,7 @@ function UploadCourse() {
           <label className="block mb-2 text-red-500">Demo Video</label>
           <input
             type="file"
-            className="w-full p-2 border border-gray-300 rounded"
+            className="block w-full mb-2 p-2 border border-gray-300 rounded text-gray-800"
             {...register("demoVideo")}
             accept="video/*"
           />

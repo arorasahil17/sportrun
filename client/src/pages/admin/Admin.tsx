@@ -5,6 +5,7 @@ import AllCourses from "./AllCourses";
 import EditCourse from "./EditCourse";
 import Users from "./Users";
 import PurchasedSubscriptions from "./PurchasedSubscriptions";
+import CreateSession from "./CreateSession";
 
 const Admin = () => {
   return (
@@ -16,6 +17,7 @@ const Admin = () => {
           <Route path="/courses" element={<AllCourses />} />
           <Route path="/edit/course/:id" element={<EditCourse />} />
           <Route path="/subscriptions" element={<PurchasedSubscriptions />} />
+          <Route path="/create/session" element={<CreateSession />} />
         </Route>
       </Routes>
     </>

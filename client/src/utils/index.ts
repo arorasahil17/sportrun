@@ -24,6 +24,12 @@ export const createNumberUnionValidator = (
 export const validateEmail = (message: string) =>
   z.string().email({ message }).min(1, { message: "Email can't be empty" });
 
+export const validateDateTime = (message: string) =>
+  z
+    .string()
+    .refine((value) => !isNaN(Date.parse(value)), { message })
+    .transform((value) => new Date(value));
+
 export const handleError = (error: any) => {
   const errorMessage =
     error.response?.data?.message ??

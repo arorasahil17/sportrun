@@ -51,3 +51,12 @@ export interface Subscription {
   purchaseDate: Date;
   numberOfDays: Date;
 }
+
+export interface Session {
+  id: number;
+  title: string;
+  description: string;
+  sessionLink: string;
+  sessionTime: Date;
+  course: Course;
+}

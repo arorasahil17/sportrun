@@ -65,6 +65,19 @@ const Sidebar = () => {
               </Link>
             </li>
             <li>
+              <Link
+                to="/dashboard/upcoming/sessions"
+                className={`block py-2 px-4 text-center md:text-left ${
+                  pathname === "/upcoming/sessions"
+                    ? "bg-red-500 text-white"
+                    : ""
+                } hover:bg-red-500 hover:text-white`}
+              >
+                <span className="md:inline hidden">Session</span>
+                <i className="fas fa-book md:hidden"></i>
+              </Link>
+            </li>
+            <li>
               <a
                 href="#"
                 className={`block py-2 px-4 text-center md:text-left ${

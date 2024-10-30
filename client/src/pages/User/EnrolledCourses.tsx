@@ -13,39 +13,6 @@ const EnrolledCourses = () => {
     (state: StoreState) => state.userReducer.user?.enrolledCourses
   );
 
-  //   const completedCourses = [
-  //     {
-  //       title: "Advanced Forex Techniques",
-  //       totalLessons: 12,
-  //       completedLessons: 12,
-  //       progress: 100,
-  //       status: "completed",
-  //       thumbnail: "https://via.placeholder.com/150", // Placeholder image
-  //     },
-  //   ];
-
-  //   const renderButton = (progress: number) => {
-  //     return progress === 0 ? (
-  //       <button className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
-  //         Start Learning
-  //       </button>
-  //     ) : (
-  //       <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
-  //         Continue Learning
-  //       </button>
-  //     );
-  //   };
-
-  //   const renderCancelButton = (status: string) => {
-  //     return (
-  //       status === "active" && (
-  //         <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-  //           Cancel Subscription
-  //         </button>
-  //       )
-  //     );
-  //   };
-
   const renderCourses = (coursesList: Course[] | undefined) => {
     return coursesList?.map((course, index) => (
       <div
@@ -54,7 +21,7 @@ const EnrolledCourses = () => {
       >
         {/* Thumbnail */}
         <img
-          src={course.thumbnailUrl}
+          src={`${import.meta.env.VITE_API_URL}/${course.thumbnailUrl}`}
           alt={`${course.title} Thumbnail`}
           className="lg:w-32 lg:h-32 w-full rounded-lg object-cover"
         />

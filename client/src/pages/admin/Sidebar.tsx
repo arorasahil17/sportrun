@@ -70,6 +70,20 @@ const Sidebar = () => {
                 </i>
               </Link>
             </li>
+            <li>
+              <Link
+                to="/admin/create/session"
+                className={`block py-2 px-4 text-center md:text-left ${
+                  pathname === "admincourse" ? "bg-[#3e64de] text-white" : ""
+                } hover:bg-red-600 hover:text-white`}
+                //   onClick={() => handleLinkClick("admincourse")}
+              >
+                <span className="md:inline hidden">Add New Session</span>
+                <i className="md:hidden">
+                  <FaBookOpen />
+                </i>
+              </Link>
+            </li>
           </ul>
         </nav>
       </aside>

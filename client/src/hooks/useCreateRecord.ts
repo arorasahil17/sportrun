@@ -6,6 +6,7 @@ import { SubscriptionInputs } from "../schemas/subscriptionSchema";
 import { useMutation } from "@tanstack/react-query";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
+import { SessionFormData } from "../schemas/sessionSchema";
 
 type CreateRecordFormData<T> = {
   mutationFn: (path: string, data: T) => Promise<ApiResponse<T> | null>;
@@ -31,7 +32,7 @@ type CreateRecordFormData<T> = {
  * - {function} mutate - A function to call the mutation with form data.
  * - {function} reset - A function to reset the form fields.
  */
-const useCreateRecord = <T extends SubscriptionInputs>(
+const useCreateRecord = <T extends SubscriptionInputs | SessionFormData>(
   args: CreateRecordFormData<T>
 ) => {
   const form = useForm<T>({ resolver: zodResolver(args.validationSchema) });
