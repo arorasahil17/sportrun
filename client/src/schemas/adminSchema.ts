@@ -26,6 +26,13 @@ export const updateCourseSchema = baseCourseSchema.extend({
   thumbnail: z.instanceof(FileList).optional(),
 });
 
+export const adminSchema = z.object({
+  username: validateRequiredString("Username is required"),
+  password: validateRequiredString("Password is required"),
+});
+
+export type AdminFormData = z.infer<typeof adminSchema>;
+
 export type CourseFormData = z.infer<typeof addCourseSchema>;
 
 export type CourseUpdateFormData = z.infer<typeof updateCourseSchema>;

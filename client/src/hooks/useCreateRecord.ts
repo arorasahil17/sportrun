@@ -2,7 +2,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { ApiResponse } from "../types";
 import { ZodType } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SubscriptionInputs } from "../schemas/subscriptionSchema";
+import {
+  CancelSubscriptionFormData,
+  SubscriptionInputs,
+} from "../schemas/subscriptionSchema";
 import { useMutation } from "@tanstack/react-query";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
@@ -12,6 +15,7 @@ type CreateRecordFormData<T> = {
   mutationFn: (path: string, data: T) => Promise<ApiResponse<T> | null>;
   validationSchema: ZodType<any>;
   path: string;
+  refetchData?: () => void;
 };
 
 /**
@@ -32,7 +36,9 @@ type CreateRecordFormData<T> = {
  * - {function} mutate - A function to call the mutation with form data.
  * - {function} reset - A function to reset the form fields.
  */
-const useCreateRecord = <T extends SubscriptionInputs | SessionFormData>(
+const useCreateRecord = <
+  T extends SubscriptionInputs | SessionFormData | CancelSubscriptionFormData
+>(
   args: CreateRecordFormData<T>
 ) => {
   const form = useForm<T>({ resolver: zodResolver(args.validationSchema) });
@@ -47,6 +53,7 @@ const useCreateRecord = <T extends SubscriptionInputs | SessionFormData>(
     onSuccess: (data) => {
       if (data && data.message) {
         toast.success(data.message);
+        args.refetchData?.();
       } else {
         toast.error("An error occurred. Please try again.");
       }

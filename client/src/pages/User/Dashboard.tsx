@@ -1,11 +1,20 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes, useNavigate } from "react-router";
 import DashboardLayout from "../../components/Dashboard/DashboardLayout";
 import { userDashboardRoutes } from "../../routes";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import Loader from "../../common/Loader";
 import Sidebar from "./Sidebar";
 
 const Dashboard = () => {
+  const isAutheticated = localStorage.getItem("isAutheticated")!;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isAutheticated) {
+      navigate("/login");
+    }
+  }, []);
+
   return (
     <>
       <Routes>

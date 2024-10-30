@@ -149,6 +149,7 @@ export const checkAuth = asyncHandler(
           subscriptions: {
             include: {
               course: true,
+              Cancellation: true,
             },
           },
           enrolledCourses: true,

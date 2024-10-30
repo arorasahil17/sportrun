@@ -16,6 +16,7 @@ const useLogout = () => {
         toast.success(response.data.message ?? "Logout successfully");
         dispatch(clearUser());
         navigate("/login");
+        localStorage.removeItem("isAutheticated");
       }
     },
     retry: false,

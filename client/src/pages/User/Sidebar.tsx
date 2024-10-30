@@ -2,10 +2,12 @@ import { useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { StoreState } from "../../lib/redux/store";
+import useLogout from "../../hooks/user/useLogout";
 
 const Sidebar = () => {
   const { pathname } = useLocation();
   const user = useSelector((state: StoreState) => state.userReducer.user);
+  const { mutate } = useLogout();
 
   return (
     <div className="flex min-h-screen rounded-xl">
@@ -60,7 +62,7 @@ const Sidebar = () => {
                 } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("Enrolled Courses")}
               >
-                <span className="md:inline hidden">Enrolled Courses</span>
+                <span className="md:inline hidden">Enrolled Subscriptions</span>
                 <i className="fas fa-book md:hidden"></i>
               </Link>
             </li>
@@ -68,7 +70,7 @@ const Sidebar = () => {
               <Link
                 to="/dashboard/upcoming/sessions"
                 className={`block py-2 px-4 text-center md:text-left ${
-                  pathname === "/upcoming/sessions"
+                  pathname === "/dashboard/upcoming/sessions"
                     ? "bg-red-500 text-white"
                     : ""
                 } hover:bg-red-500 hover:text-white`}
@@ -78,16 +80,14 @@ const Sidebar = () => {
               </Link>
             </li>
             <li>
-              <a
-                href="#"
-                className={`block py-2 px-4 text-center md:text-left ${
-                  pathname === "Settings" ? "bg-red-500 text-white" : ""
-                } hover:bg-red-600 hover:text-white`}
-                //   onClick={() => handleLinkClick("Settings")}
+              <button
+                className="block w-full py-2 px-4 text-center md:text-left  text-white
+                hover:bg-red-600 hover:text-white"
+                onClick={() => mutate()}
               >
-                <span className="md:inline hidden">Settings</span>
+                <span className="md:inline hidden">Logout</span>
                 <i className="fas fa-cog md:hidden"></i>
-              </a>
+              </button>
             </li>
           </ul>
         </nav>

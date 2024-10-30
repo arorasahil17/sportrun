@@ -19,9 +19,13 @@ export interface UserInputs {
 export interface JwtPayloadWithEmail extends JwtPayload {
   email: string;
 }
+export interface JwtPayloadWithUsername extends JwtPayload {
+  username: string;
+}
 
 export interface AuthenticatedRequest extends Request {
   user?: JwtPayloadWithEmail | string;
+  admin?: JwtPayloadWithUsername | string;
 }
 
 export interface CourseInputs extends Course {}
@@ -48,4 +52,10 @@ export interface SessionInputs {
   sessionLink: string;
   sessionTime: Date;
   courseId: number;
+}
+
+export interface CancellationInputs {
+  id: number;
+  subscriptionId: number;
+  reason: string;
 }

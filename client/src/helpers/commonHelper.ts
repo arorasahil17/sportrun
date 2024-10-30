@@ -73,6 +73,23 @@ export const fetchAllRecords = async <T>(path: string): Promise<T[] | null> => {
   }
 };
 
+export const updateRecord = async <T>(
+  path: string,
+  data: T
+): Promise<string | null> => {
+  try {
+    const response = await apiClient.put<ApiResponse<any>>(path, data);
+
+    if (response.data.success) {
+      return response.data.message;
+    }
+    return null;
+  } catch (error) {
+    handleError(error);
+    return null;
+  }
+};
+
 /**
  * Delete a record from the database.
  *

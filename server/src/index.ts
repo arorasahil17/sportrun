@@ -5,25 +5,29 @@ import userRoutes from "./routes/userRoutes";
 import courseRoutes from "./routes/courseRoutes";
 import subscriptionRoutes from "./routes/subscriptionRoutes";
 import sessionRoutes from "./routes/sessionRoutes";
+import cancellationRoutes from "./routes/cancellationRoutes";
+import adminRoutes from "./routes/adminRoutes";
 import cookieParser from "cookie-parser";
 import path from "path";
 const app: Express = express();
 const port = 3000;
 
-app.use(express.static(path.resolve(__dirname, "uploads")));
-app.use(express.static(path.resolve(__dirname, "dist")));
 app.use(
   cors({
     origin: "http://localhost:5173",
     credentials: true,
   })
 );
+app.use(express.static(path.resolve(__dirname, "uploads")));
+app.use(express.static(path.resolve(__dirname, "dist")));
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/v1", userRoutes);
 app.use("/api/v1", courseRoutes);
 app.use("/api/v1", subscriptionRoutes);
 app.use("/api/v1", sessionRoutes);
+app.use("/api/v1", cancellationRoutes);
+app.use("/api/v1", adminRoutes);
 app.use(errorHandler);
 
 app.get("*", (_request: Request, response: Response) => {

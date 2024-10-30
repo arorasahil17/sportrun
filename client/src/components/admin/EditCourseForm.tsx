@@ -21,7 +21,6 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({
   isUpdating,
   onsubmit,
 }) => {
-  console.log("errors", errors);
   return (
     <>
       <div className="p-6 bg-white shadow-lg rounded-lg max-w-lg mx-auto mt-6">

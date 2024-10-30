@@ -1,11 +1,17 @@
 import { useSelector } from "react-redux";
 import CourseCard from "../components/CourseCard";
-import useCourses from "../hooks/useCourses";
 import { StoreState } from "../lib/redux/store";
 import { useNavigate } from "react-router";
+import useRecords from "../hooks/useRecords";
+import { Course } from "../types";
+import { fetchAllRecords } from "../helpers/commonHelper";
 
 const Courses = () => {
-  const { data: courses } = useCourses();
+  const { data: courses } = useRecords<Course>({
+    queryKey: ["courses"],
+    queryFn: fetchAllRecords,
+    path: "/courses",
+  });
   const navigate = useNavigate();
   const user = useSelector((state: StoreState) => state.userReducer.user);
 

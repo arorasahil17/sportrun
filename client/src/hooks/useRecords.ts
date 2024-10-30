@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { Course, Session } from "../types";
+import { Cancellation, Course, Session, Subscription, User } from "../types";
 
 type FetchRecordArgs<T> = {
   queryKey: string[];
@@ -9,7 +9,11 @@ type FetchRecordArgs<T> = {
   refetchOnWindowFocus?: boolean;
 };
 
-const useRecords = <T extends Course | Session>(args: FetchRecordArgs<T>) => {
+const useRecords = <
+  T extends Course | Session | Cancellation | User | Subscription
+>(
+  args: FetchRecordArgs<T>
+) => {
   return useQuery<T[] | null, Error>({
     queryKey: args.queryKey,
     queryFn: () => args.queryFn(args.path),

@@ -5,8 +5,8 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { ApiResponse } from "../../types";
 import { useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../lib/redux/slices/userSlice";
+// import { useDispatch } from "react-redux";
+// import { setUser } from "../../lib/redux/slices/userSlice";
 import { ZodType } from "zod";
 
 /**
@@ -47,12 +47,13 @@ type UseAuthFormReturn<T extends UserSchemaType | UserLoginSchemaType> = {
   onsubmit: SubmitHandler<T>;
   errors: any;
   status: string;
+  data: ApiResponse<any> | null | undefined;
 };
 
 const useAuthForm = <T extends UserSchemaType | UserLoginSchemaType>(
   args: UseAuthFormArgs<T>
 ): UseAuthFormReturn<T> => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -61,13 +62,17 @@ const useAuthForm = <T extends UserSchemaType | UserLoginSchemaType>(
     resolver: zodResolver(args.validationSchema),
   });
 
-  const { mutate, status } = useMutation<ApiResponse<any> | null, Error, T>({
+  const { mutate, status, data } = useMutation<
+    ApiResponse<any> | null,
+    Error,
+    T
+  >({
     mutationFn: args.mutationFn,
 
     onSuccess: (data) => {
       if (data && data.message) {
         toast.success(data.message || args.successMessage);
-        dispatch(setUser(data.data));
+        // dispatch(setUser(data.data));
       } else {
         toast.error(args.errorMessage);
       }
@@ -88,6 +93,7 @@ const useAuthForm = <T extends UserSchemaType | UserLoginSchemaType>(
     onsubmit,
     errors,
     status,
+    data,
   };
 };
 

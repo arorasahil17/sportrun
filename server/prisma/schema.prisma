@@ -32,7 +32,7 @@ model Course {
   subscriptions  Subscription[]
   user           User?          @relation(fields: [userId], references: [id])
   userId         Int?
-  Sessions       Sessions?
+  Sessions       Sessions[]
 }
 
 enum SubscriptionPlanDuration {
@@ -42,16 +42,17 @@ enum SubscriptionPlanDuration {
 }
 
 model Subscription {
-  id           Int       @id @default(autoincrement())
+  id           Int           @id @default(autoincrement())
   userId       Int
-  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   courseId     Int
-  course       Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course       Course        @relation(fields: [courseId], references: [id], onDelete: Cascade)
   price        Float
   purchaseDate DateTime
   startDate    DateTime
   endDate      DateTime?
   numberOfDays Int
+  Cancellation Cancellation?
 }
 
 model Sessions {
@@ -60,6 +61,27 @@ model Sessions {
   description String
   sessionTime DateTime @map("session_time")
   sessionLink String   @map("meeting_link")
-  courseId    Int      @unique
+  courseId    Int
   course      Course?  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+
+enum CancellationEnum {
+  PENDING
+  APPROVED
+}
+
+model Cancellation {
+  id               Int              @id @default(autoincrement())
+  subscriptionId   Int              @unique
+  reason           String
+  cancellationDate DateTime         @default(now())
+  status           CancellationEnum @default(PENDING)
+  subscription     Subscription     @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  name     String
+  username String @unique
+  password String
 }

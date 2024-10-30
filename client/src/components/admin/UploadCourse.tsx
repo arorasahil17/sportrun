@@ -8,7 +8,7 @@ function UploadCourse() {
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg max-w-2xl mx-auto">
       <h2 className="text-2xl font-bold mb-4 text-red-500">
-        Upload Course Details
+        Upload Video Details
       </h2>
       <form className="space-y-6" onSubmit={handleSubmit(onsubmit)}>
         <div>

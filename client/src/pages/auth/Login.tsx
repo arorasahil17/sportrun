@@ -2,15 +2,28 @@ import { Link, useNavigate } from "react-router-dom";
 import useLogin from "../../hooks/user/useLogin";
 import { useEffect } from "react";
 import ErrorField from "../../common/ErrorField";
+import { useDispatch, useSelector } from "react-redux";
+import { StoreState } from "../../lib/redux/store";
+import { setUser } from "../../lib/redux/slices/userSlice";
 
 const Login = () => {
-  const { register, errors, handleSubmit, status, onsubmit } = useLogin();
+  const { register, errors, handleSubmit, status, onsubmit, data } = useLogin();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((state: StoreState) => state.userReducer.user);
+  const isAutheticated = localStorage.getItem("isAutheticated");
+
+  useEffect(() => {
+    if (isAutheticated || user) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   useEffect(() => {
     if (status === "success") {
+      dispatch(setUser(data?.data));
+      localStorage.setItem("isAutheticated", "true");
       const redirectUrl = localStorage.getItem("redirectUrl");
-      console.log("redirect url", redirectUrl);
       navigate(redirectUrl ?? "/dashboard");
       localStorage.removeItem("redirectUrl");
     }

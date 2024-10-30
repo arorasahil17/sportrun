@@ -4,6 +4,7 @@ import {
   AsyncError,
   AuthenticatedRequest,
   JwtPayloadWithEmail,
+  JwtPayloadWithUsername,
 } from "../types";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your-very-secure-secret-key";
@@ -38,6 +39,44 @@ export const authenticateUser = (
       request.user = decoded;
     } else {
       request.user = decoded as JwtPayloadWithEmail;
+    }
+
+    // Continue to the next middleware or route handler
+    next();
+  } catch (error) {
+    const err: AsyncError = {
+      statusCode: 403,
+      message: "Your session has expired. Please login again",
+    };
+    return next(err);
+  }
+};
+
+export const authenticateAdmin = (
+  request: AuthenticatedRequest,
+  _response: Response,
+  next: NextFunction
+) => {
+  const token =
+    request.cookies.admin_token || request.headers.authorization?.split(" ")[1];
+
+  if (!token) {
+    const error: AsyncError = {
+      statusCode: 401,
+      message: "You are not logged in, Please login to continue",
+    };
+    return next(error);
+  }
+
+  try {
+    // Verify the token
+    const decoded = jwt.verify(token, JWT_SECRET);
+
+    // Attach the decoded user info to the request object
+    if (typeof decoded === "string") {
+      request.user = decoded;
+    } else {
+      request.admin = decoded as JwtPayloadWithUsername;
     }
 
     // Continue to the next middleware or route handler

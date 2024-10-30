@@ -11,12 +11,13 @@ import { StoreState } from "../lib/redux/store";
 import { useParams } from "react-router";
 import useFetchRecord from "../hooks/useGetRecord";
 import { Course } from "../types";
+import useRefetchData from "../hooks/useRefetchData";
 
 const Checkout = () => {
   const [days, setDays] = useState(10);
-
   const params = useParams();
   const courseId = Number(params.id);
+  const { refetchData } = useRefetchData("authenticate");
 
   const { data: course } = useFetchRecord<Course>({
     queryKey: [`course/${courseId}`],
@@ -32,6 +33,7 @@ const Checkout = () => {
       mutationFn: createRecord,
       validationSchema: subscriptionSchema,
       path: "/subscribe",
+      refetchData,
     });
 
   const handleDaysChange = (days: number) => {

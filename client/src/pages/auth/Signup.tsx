@@ -2,10 +2,20 @@ import { Link, useNavigate } from "react-router-dom";
 import ErrorField from "../../common/ErrorField";
 import useSignup from "../../hooks/user/useSignup";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { StoreState } from "../../lib/redux/store";
 
 const Signup = () => {
   const { register, errors, handleSubmit, status, onsubmit } = useSignup();
   const navigate = useNavigate();
+  const user = useSelector((state: StoreState) => state.userReducer.user);
+  const isAutheticated = localStorage.getItem("isAutheticated");
+
+  useEffect(() => {
+    if (isAutheticated || user) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   useEffect(() => {
     if (status === "success") {

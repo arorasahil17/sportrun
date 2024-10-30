@@ -6,6 +6,7 @@ import { ApiResponse } from "../../types";
 import { createCourse } from "../../helpers/adminHelper";
 import toast from "react-hot-toast";
 import { useCallback } from "react";
+import useRefetchData from "../useRefetchData";
 
 /**
  * A custom hook for handling the course creation form with validation and state management.
@@ -23,6 +24,8 @@ const useCreateCourse = () => {
     formState: { errors },
   } = useForm<CourseFormData>({ resolver: zodResolver(addCourseSchema) });
 
+  const { refetchData } = useRefetchData("courses");
+
   const { mutate, status } = useMutation<
     ApiResponse<any> | null,
     Error,
@@ -34,6 +37,7 @@ const useCreateCourse = () => {
     onSuccess: (data) => {
       if (data && data.message) {
         toast.success(data.message);
+        refetchData();
       } else {
         toast.error("An error occurred. Please try again.");
       }

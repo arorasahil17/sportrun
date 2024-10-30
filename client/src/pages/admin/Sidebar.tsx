@@ -30,11 +30,13 @@ const Sidebar = () => {
               <Link
                 to="/admin/add/course"
                 className={`block py-2 px-4 text-center md:text-left ${
-                  pathname === "/admin/course" ? "bg-[#3e64de] text-white" : ""
+                  pathname === "/admin/add/course"
+                    ? "bg-red-600 text-white"
+                    : ""
                 } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("uploadcourse")}
               >
-                <span className="md:inline hidden">Upload Course</span>
+                <span className="md:inline hidden">Upload Video</span>
                 <i className="md:hidden">
                   <FaUpload />
                 </i>
@@ -44,13 +46,15 @@ const Sidebar = () => {
               <Link
                 to="/admin/subscriptions"
                 className={`block py-2 px-4 text-center md:text-left ${
-                  pathname === "purchasedcourse"
-                    ? "bg-[#3e64de] text-white"
+                  pathname === "/admin/subscriptions"
+                    ? "bg-red-600 text-white"
                     : ""
                 } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("purchasedcourse")}
               >
-                <span className="md:inline hidden">Purchased Course</span>
+                <span className="md:inline hidden">
+                  Purchased Subscriptions
+                </span>
                 <i className="md:hidden">
                   <FaShoppingCart />
                 </i>
@@ -60,11 +64,11 @@ const Sidebar = () => {
               <Link
                 to="/admin/courses"
                 className={`block py-2 px-4 text-center md:text-left ${
-                  pathname === "admincourse" ? "bg-[#3e64de] text-white" : ""
+                  pathname === "/admin/courses" ? "bg-red-600 text-white" : ""
                 } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("admincourse")}
               >
-                <span className="md:inline hidden">Admin Course</span>
+                <span className="md:inline hidden">Admin Subscriptions</span>
                 <i className="md:hidden">
                   <FaBookOpen />
                 </i>
@@ -74,11 +78,43 @@ const Sidebar = () => {
               <Link
                 to="/admin/create/session"
                 className={`block py-2 px-4 text-center md:text-left ${
-                  pathname === "admincourse" ? "bg-[#3e64de] text-white" : ""
+                  pathname === "/admin/create/session"
+                    ? "bg-red-600 text-white"
+                    : ""
                 } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("admincourse")}
               >
                 <span className="md:inline hidden">Add New Session</span>
+                <i className="md:hidden">
+                  <FaBookOpen />
+                </i>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/admin/session"
+                className={`block py-2 px-4 text-center md:text-left ${
+                  pathname === "/admin/session" ? "bg-red-600 text-white" : ""
+                } hover:bg-red-600 hover:text-white`}
+                //   onClick={() => handleLinkClick("admincourse")}
+              >
+                <span className="md:inline hidden">View All Session</span>
+                <i className="md:hidden">
+                  <FaBookOpen />
+                </i>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/admin/cancel/subcriptions"
+                className={`block py-2 px-4 text-center md:text-left ${
+                  pathname === "/admin/cancel/subcriptions"
+                    ? "bg-red-600 text-white"
+                    : ""
+                } hover:bg-red-600 hover:text-white`}
+                //   onClick={() => handleLinkClick("admincourse")}
+              >
+                <span className="md:inline hidden">Cancel Subscriptions</span>
                 <i className="md:hidden">
                   <FaBookOpen />
                 </i>

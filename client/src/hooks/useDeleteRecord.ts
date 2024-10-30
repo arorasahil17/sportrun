@@ -19,7 +19,7 @@ import toast from "react-hot-toast";
  * - `mutate`: A function to call the mutation with an object containing the `id` and `path` for the record to delete
  * - `status`: The current status of the mutation (e.g., "idle", "loading", "error", "success")
  */
-const useDeleteRecord = (invalidateRecord: () => void) => {
+const useDeleteRecord = (refetchData: () => void) => {
   return useMutation<
     ApiResponse<any> | null,
     Error,
@@ -29,7 +29,7 @@ const useDeleteRecord = (invalidateRecord: () => void) => {
     onSuccess: (data) => {
       if (data && data.message) {
         toast.success(data.message);
-        invalidateRecord();
+        refetchData();
       } else {
         toast.error("An error occurred. Please try again.");
       }

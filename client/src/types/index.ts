@@ -50,6 +50,7 @@ export interface Subscription {
   endDate: Date;
   purchaseDate: Date;
   numberOfDays: Date;
+  Cancellation: Cancellation;
 }
 
 export interface Session {
@@ -59,4 +60,24 @@ export interface Session {
   sessionLink: string;
   sessionTime: Date;
   course: Course;
+}
+
+export enum CancellationStatus {
+  PENDING = "PENDING",
+  APPROVED = "APPROVED",
+}
+
+export interface Cancellation {
+  id: number;
+  subscriptionId: number;
+  reason: string;
+  cancellationDate: Date;
+  status: CancellationStatus;
+  subscription?: Subscription;
+}
+
+export interface Admin {
+  id: number;
+  name: string;
+  username: string;
 }

@@ -13,6 +13,9 @@ const EnrolledCourses = React.lazy(
 const ForgetPassword = React.lazy(() => import("../components/ForgetPassword"));
 const ResetPassword = React.lazy(() => import("../components/ResetPassword"));
 const Sessions = React.lazy(() => import("../pages/User/Sessions"));
+const CancelSubscription = React.lazy(
+  () => import("../pages/User/CancelSubscription")
+);
 
 export const navLinks: NavLinks = [
   { name: "home", path: "/" },
@@ -46,4 +49,9 @@ export const userDashboardRoutes: Routes = [
   { name: "Profile", path: "/profile", component: Profile },
   { name: "Enrolled Courses", path: "/courses", component: EnrolledCourses },
   { name: "Sessions", path: "/upcoming/sessions", component: Sessions },
+  {
+    name: "Cancel Subscription",
+    path: "/cancel-subscription/:id",
+    component: CancelSubscription,
+  },
 ];

@@ -21,7 +21,7 @@ const SessionList: React.FC<SessionListProps> = ({
               <tr className="bg-gray-700 text-red-500">
                 <th className="p-4">Title</th>
                 <th className="p-4">Description</th>
-                <th className="p-4">Meeting Link</th>
+                <th className="p-4">Session Link</th>
                 <th className="p-4">Time</th>
               </tr>
             </thead>
