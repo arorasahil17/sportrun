@@ -9,7 +9,7 @@ import CheckoutForm from "../components/CheckoutForm";
 import { useSelector } from "react-redux";
 import { StoreState } from "../lib/redux/store";
 import { useParams } from "react-router";
-import useFetchRecord from "../hooks/useFetchRecord";
+import useFetchRecord from "../hooks/useGetRecord";
 import { Course } from "../types";
 
 const Checkout = () => {

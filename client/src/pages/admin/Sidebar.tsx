@@ -7,15 +7,17 @@ const Sidebar = () => {
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <aside className={`bg-gray-200 transition-all duration-300 p-4`}>
+      <aside
+        className={`bg-[#171E30] text-white transition-all duration-300 p-4`}
+      >
         <nav>
           <ul className="space-y-4">
             <li>
               <Link
                 to="/admin"
                 className={`block py-2 px-4 text-center md:text-left ${
-                  pathname === "/admin" ? "bg-[#3e64de] text-white" : ""
-                } hover:bg-[#3e64de] hover:text-white`}
+                  pathname === "/admin" ? "bg-red-500 text-white" : ""
+                } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("allusers")}
               >
                 <span className="md:inline hidden">All Users</span>
@@ -29,7 +31,7 @@ const Sidebar = () => {
                 to="/admin/add/course"
                 className={`block py-2 px-4 text-center md:text-left ${
                   pathname === "/admin/course" ? "bg-[#3e64de] text-white" : ""
-                } hover:bg-[#3e64de] hover:text-white`}
+                } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("uploadcourse")}
               >
                 <span className="md:inline hidden">Upload Course</span>
@@ -39,27 +41,27 @@ const Sidebar = () => {
               </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/admin/subscriptions"
                 className={`block py-2 px-4 text-center md:text-left ${
                   pathname === "purchasedcourse"
                     ? "bg-[#3e64de] text-white"
                     : ""
-                } hover:bg-[#3e64de] hover:text-white`}
+                } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("purchasedcourse")}
               >
                 <span className="md:inline hidden">Purchased Course</span>
                 <i className="md:hidden">
                   <FaShoppingCart />
                 </i>
-              </a>
+              </Link>
             </li>
             <li>
               <Link
                 to="/admin/courses"
                 className={`block py-2 px-4 text-center md:text-left ${
                   pathname === "admincourse" ? "bg-[#3e64de] text-white" : ""
-                } hover:bg-[#3e64de] hover:text-white`}
+                } hover:bg-red-600 hover:text-white`}
                 //   onClick={() => handleLinkClick("admincourse")}
               >
                 <span className="md:inline hidden">Admin Course</span>
@@ -74,7 +76,7 @@ const Sidebar = () => {
 
       {/* Main Content */}
       {/* Main Content */}
-      <main className="flex-1 bg-gray-100 p-8">
+      <main className="flex-1 bg-[#171E30] text-white p-8">
         <Outlet />
       </main>
     </div>

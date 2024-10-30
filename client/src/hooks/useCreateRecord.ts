@@ -13,17 +13,28 @@ type CreateRecordFormData<T> = {
   path: string;
 };
 
+/**
+ * A custom hook for creating records with form validation and mutation handling.
+ *
+ * @template T - The type of the form data, extending SubscriptionInputs.
+ * @param {CreateRecordFormData<T>} args - An object containing the mutation function, validation schema, and API path.
+ *   - mutationFn: A function to handle the API call for creating a record.
+ *   - validationSchema: A Zod schema for validating the form data.
+ *   - path: The API path for the record creation.
+ *
+ * @returns {object} An object containing the following properties:
+ * - {function} register - A function to register input fields in the form.
+ * - {function} handleSubmit - A function to handle form submission.
+ * - {object} errors - An object containing any validation errors.
+ * - {function} onsubmit - A function to be called when the form is submitted.
+ * - {string} status - The current status of the mutation (e.g., "idle", "loading", "error", "success").
+ * - {function} mutate - A function to call the mutation with form data.
+ * - {function} reset - A function to reset the form fields.
+ */
 const useCreateRecord = <T extends SubscriptionInputs>(
   args: CreateRecordFormData<T>
 ) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    setValue,
-    getValues,
-  } = useForm<T>({ resolver: zodResolver(args.validationSchema) });
+  const form = useForm<T>({ resolver: zodResolver(args.validationSchema) });
 
   const { mutate, status, isPending } = useMutation<
     ApiResponse<T> | null,
@@ -50,15 +61,11 @@ const useCreateRecord = <T extends SubscriptionInputs>(
   );
 
   return {
-    register,
-    handleSubmit,
-    errors,
+    ...form,
+    errors: form.formState.errors,
     status,
     isPending,
     onsubmit,
-    reset,
-    setValue,
-    getValues,
   };
 };
 

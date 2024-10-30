@@ -217,17 +217,19 @@ export const forgetPassword = asyncHandler(
     });
 
     // Send an email with the reset token to the user
-    const resetUrl = `${request.protocol}://${request.get(
-      "host"
-    )}/api/auth/reset-password/${resetToken}`;
-    const message = `You have requested a password reset. Please use the following link to reset your password: \n\n${resetUrl}`;
+    // const resetUrl = `${request.protocol}://${request.get(
+    //   "host"
+    // )}/api/auth/reset-password/${resetToken}`;
+    const resetUrl = `${process.env.CLIENT_URL}/reset-password?token=${resetToken}`;
 
+    console.log(resetUrl);
     // Send the email
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: user.email,
       subject: "Password Reset Request",
-      text: message,
+      // text: message,
+      html: `<p>You have requested a password reset. Please use the following link to reset your password:</p><a href=${resetUrl}>Reset Password</a>`,
     };
     await transporter.sendMail(mailOptions);
 
@@ -241,7 +243,7 @@ export const forgetPassword = asyncHandler(
 
 export const resetPassword = asyncHandler(
   async (request: Request, response: Response, next: NextFunction) => {
-    const { token } = request.params;
+    const token = request.query.token?.toString();
     const { newPassword, confirmPassword } = request.body;
 
     // Check if passwords match
@@ -258,7 +260,7 @@ export const resetPassword = asyncHandler(
       where: {
         resetToken: token,
         resetTokenExpiry: {
-          gte: new Date(), // Ensure token has not expired
+          gte: new Date(),
         },
       },
     });
@@ -297,5 +299,25 @@ export const logoutUser = asyncHandler(
     return response
       .status(200)
       .json({ success: true, message: "Logout successfully" });
+  }
+);
+
+export const fetchUsers = asyncHandler(
+  async (_request: Request, response: Response, next: NextFunction) => {
+    const users = await prisma.user.findMany({});
+
+    if (!users) {
+      const error: AsyncError = {
+        statusCode: 404,
+        message: "No users found",
+      };
+      return next(error);
+    }
+
+    return response.status(200).json({
+      success: true,
+      message: "Users fetched successfully",
+      data: users,
+    });
   }
 );

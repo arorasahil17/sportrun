@@ -7,14 +7,14 @@ interface CourseCardProps {
 
 const CourseCard: React.FC<CourseCardProps> = ({ course, subscribeCourse }) => {
   return (
-    <div className="w-full bg-white shadow-md rounded-lg overflow-hidden max-w-xs mx-auto my-4">
+    <div className="w-full bg-[#171E30] shadow-md rounded-lg overflow-hidden max-w-xs mx-auto my-4">
       <img
         className="w-full h-48 object-cover"
-        src={course.thumbnailUrl}
+        src={`${import.meta.env.VITE_API_URL}/${course.thumbnailUrl}`}
         alt={course.title}
       />
       <div className="p-4">
-        <h2 className="text-lg font-semibold text-gray-800 mb-2">
+        <h2 className="text-lg font-medium text-red-500 mb-2">
           {course.title}
         </h2>
         {/* <div className="flex items-center mb-2">
@@ -32,18 +32,18 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, subscribeCourse }) => {
               <p className="text-green-500 font-bold text-lg">
                 ${course.offPrice}
               </p>
-              <p className="text-gray-500 line-through">${course.price}</p>
+              <p className="text-white line-through">${course.price}</p>
             </>
           ) : (
-            <p className="text-gray-800 font-bold text-lg">${course.price}</p>
+            <p className="text-white font-bold text-lg">${course.price}</p>
           )}
         </div>
         <div>
           <button
+            className=" text-white py-2 px-4 rounded bg-red-500 hover:bg-red-600 w-full"
             onClick={() => subscribeCourse(course.id)}
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full"
           >
-            Subscribe
+            Enroll Now
           </button>
         </div>
 

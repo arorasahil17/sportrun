@@ -15,13 +15,16 @@ const CourseList: React.FC<CourseListProps> = ({
     <>
       {courses && courses.length ? (
         courses?.map((course) => (
-          <div key={course.id} className="bg-white rounded-lg shadow-lg p-4">
+          <div
+            key={course.id}
+            className="bg-[#171E30] border border-red-400 rounded-lg shadow-lg p-4"
+          >
             <div className="mb-4">
               {course.thumbnailUrl ? (
                 <img
-                  src={course.thumbnailUrl}
+                  src={`${import.meta.env.VITE_API_URL}/${course.thumbnailUrl}`}
                   alt={course.title}
-                  className="w-full h-40 object-fill rounded"
+                  className="w-full h-40 object-cover rounded"
                 />
               ) : (
                 <div className="w-full h-40 bg-gray-200 flex items-center justify-center rounded">
@@ -29,9 +32,11 @@ const CourseList: React.FC<CourseListProps> = ({
                 </div>
               )}
             </div>
-            <h3 className="text-lg font-semibold">{course.title}</h3>
-            <p className="text-gray-600">Price: ${course.price}</p>
-            <p className="text-gray-600">Off Price: ${course.offPrice}</p>
+            <h3 className="text-lg font-semibold text-red-500">
+              {course.title}
+            </h3>
+            <p className="text-white">Price: ${course.price}</p>
+            <p className="text-white">Off Price: ${course.offPrice}</p>
 
             <div className="mt-4 flex space-x-4">
               <Link

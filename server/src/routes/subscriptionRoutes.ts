@@ -6,6 +6,7 @@ import { router } from "../utils";
 
 router
   .post("/subscribe", createSubscription)
+  .get("/subscriptions", fetchAllSubscriptions)
   .get("/subscriptions", fetchAllSubscriptions);
 
 export default router;

@@ -95,7 +95,7 @@ export const fetchCourse = asyncHandler(
 
 export const updateCourse = asyncHandler(
   async (request: Request, response: Response, next: NextFunction) => {
-    const SERVER_URL = process.env.SERVER_URL || "http://localhost:3000";
+    // const SERVER_URL = process.env.SERVER_URL || "http://localhost:3000";
     const { id } = request.params;
     const { title, description, price, offPrice } =
       request.body as CourseInputs;
@@ -130,19 +130,19 @@ export const updateCourse = asyncHandler(
     let demoVideoUrl = existingCourse.demoVideoUrl;
     if (files.demoVideo) {
       deleteOldFile(demoVideoUrl);
-      demoVideoUrl = `${SERVER_URL}/${files.demoVideo[0].filename}`;
+      demoVideoUrl = `${files.demoVideo[0].filename}`;
     }
 
     let courseVideoUrl = existingCourse.courseVideoUrl;
     if (files.courseVideo) {
       deleteOldFile(courseVideoUrl);
-      courseVideoUrl = `${SERVER_URL}/${files.courseVideo[0].filename}`;
+      courseVideoUrl = `${files.courseVideo[0].filename}`;
     }
 
     let thumbnailUrl = existingCourse.thumbnailUrl;
     if (files.thumbnail) {
       deleteOldFile(thumbnailUrl);
-      thumbnailUrl = `${SERVER_URL}/${files.thumbnail[0].filename}`;
+      thumbnailUrl = `${files.thumbnail[0].filename}`;
     }
 
     const updatedCourse = await prisma.course.update({

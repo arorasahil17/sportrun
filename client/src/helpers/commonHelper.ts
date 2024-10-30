@@ -27,6 +27,15 @@ export const createRecord = async <T>(
   }
 };
 
+/**
+ * Makes a GET request to the given path with the given id.
+ *
+ * @param {number} id - The ID of the record to fetch.
+ * @param {string} path - The API path to make the request to.
+ *
+ * @returns A promise that resolves to the record if the request was
+ * successful, else null.
+ */
 export const fetchRecord = async <T>(
   id: number,
   path: string
@@ -35,6 +44,27 @@ export const fetchRecord = async <T>(
     const response = await apiClient.get<ApiResponse<T>>(`${path}/${id}`);
     if (response.data.success) {
       return response.data.data ?? null;
+    }
+    return null;
+  } catch (error) {
+    handleError(error);
+    return null;
+  }
+};
+
+/**
+ * Makes a GET request to the given path to fetch all records.
+ *
+ * @param {string} path - The API path to make the request to.
+ *
+ * @returns A promise that resolves to the response data if the request
+ * was successful, else null.
+ */
+export const fetchAllRecords = async <T>(path: string): Promise<T[] | null> => {
+  try {
+    const response = await apiClient.get<ApiResponse<T[]>>(path);
+    if (response.data.success) {
+      return response.data.data ?? [];
     }
     return null;
   } catch (error) {

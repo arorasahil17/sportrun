@@ -15,7 +15,7 @@ export type Routes = Route[];
 
 export interface ApiResponse<T> {
   success: boolean;
-  message?: string;
+  message: string;
   data?: T;
 }
 
@@ -44,7 +44,7 @@ export interface Subscription {
   userId: number;
   user: User;
   courseId: number;
-  course: Course[];
+  course: Course;
   price: number;
   startDate: Date;
   endDate: Date;

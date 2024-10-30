@@ -20,6 +20,18 @@ export const UserLoginSchema = z.object({
   password: validateRequiredString("Password is required"),
 });
 
+export const resetPasswordSchema = z
+  .object({
+    newPassword: validateRequiredString("Password is required"),
+    confirmPassword: validateRequiredString("Please confirm your password"),
+  })
+  .refine((data) => data.newPassword === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
 export type UserSchemaType = z.infer<typeof UserValidationSchema>;
 
 export type UserLoginSchemaType = z.infer<typeof UserLoginSchema>;
+
+export type ResetPasswordSchemaType = z.infer<typeof resetPasswordSchema>;

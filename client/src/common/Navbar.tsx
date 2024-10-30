@@ -11,25 +11,25 @@ const Navbar = () => {
   const { user } = useSelector((state: StoreState) => state.userReducer);
 
   return (
-    <header className="relative px-3 py-5">
+    <header className="relative bg-black border-b border-b-zinc-900 px-3 py-5">
       <nav className="flex justify-evenly items-center">
         {/* Logo */}
         <div className="w-[130px] md:w-[200px] flex justify-center">
-          <img src="https://i.postimg.cc/MZCBXb1K/logo.png" alt="LOGO" />
+          <img src="/spotrunlogo.png" alt="LOGO" />
         </div>
 
         {/* Navigation Links */}
         <div>
           <div
-            className={`navLinks duration-500 absolute md:static md:w-auto w-full md:h-auto h-[85vh] bg-white flex md:items-center gap-[1.5vw] top-[100%] left-[-100%] md:flex-row flex-col px-5 md:py-0 py-5 transition-transform ${
-              menuOpen ? "left-[0%]" : "left-[-100%]"
-            }`}
+            className={`navLinks duration-500 md:static absolute md:w-auto w-full h-[100vh] md:h-auto bg-black flex md:items-center gap-[1.5vw] top-[100%] md:top-auto px-4 md:px-0 lg:px-0 ${
+              menuOpen ? "left-0" : "left-[-100%]"
+            } transition-all`}
           >
-            <ul className="flex md:flex-row flex-col md:items-center md:gap-[2vw] gap-8">
-              {navLinks.map(({ name, path }) => (
+            <ul className="flex md:flex-row flex-col md:items-center md:gap-[2vw] text-white gap-8">
+              {navLinks.map(({ name, path }, index) => (
                 <li
-                  key={name}
-                  className="relative max-w-fit pr-3 md:pr-0 py-1 transition ease-in-out delay-150 hover:text-blue-500 after:bg-gray-400 after:absolute after:h-1 after:w-0 after:bottom-[-5px] after:left-0 hover:after:w-full after:transition-all after:delay-150"
+                  key={index}
+                  className="relative max-w-fit pr-3 md:pr-0 py-1 transition ease-in-out delay-150 hover:text-red-500 after:bg-red-400 after:absolute after:h-1 after:w-0 after:bottom-[-5px] after:left-0 hover:after:w-full after:transition-all after:delay-150"
                 >
                   <a href={path} className="uppercase">
                     {name}
@@ -40,14 +40,14 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* icon and Menu Icon */}
+        {/* Icon and Menu Icon */}
         <div className="flex justify-center items-center gap-2">
           <div className="hidden sm:flex items-center justify-center space-x-4">
             <div className="flex space-x-4">
               {/* User Icon */}
               <Link
                 to={user ? "/dashboard" : "/login"}
-                className="w-10 h-10 rounded-full ease-in-out delay-150  bg-[#FD346E] hover:bg-[#7F54B3]  hover:scale-100 hover:-translate-y-1  text-white flex items-center justify-center hover:opacity-90 transition"
+                className="w-10 h-10 rounded-full ease-in-out delay-150  bg-red-500 hover:bg-red-600  hover:scale-100 hover:-translate-y-1  text-white flex items-center justify-center hover:opacity-90 transition"
               >
                 <i className="fas fa-user-alt text-lg"></i>
                 <span className="sr-only">User-alt</span>
@@ -58,7 +58,7 @@ const Navbar = () => {
                 href="/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full ease-in-out delay-150  bg-[#FD346E] hover:bg-[#7F54B3]  hover:scale-100 hover:-translate-y-1  text-white flex items-center justify-center hover:opacity-90 transition"
+                className="w-10 h-10 rounded-full ease-in-out delay-150  bg-red-500 hover:bg-red-600  hover:scale-100 hover:-translate-y-1  text-white flex items-center justify-center hover:opacity-90 transition"
               >
                 <i className="fas fa-cart-plus text-lg"></i>
                 <span className="sr-only">Cart-plus</span>
@@ -69,7 +69,7 @@ const Navbar = () => {
                 href="/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full ease-in-out delay-150  bg-[#FD346E] hover:bg-[#7F54B3]  hover:scale-100 hover:-translate-y-1  text-white flex items-center justify-center hover:opacity-90 transition"
+                className="w-10 h-10 rounded-full ease-in-out delay-150  bg-red-500 hover:bg-red-600  hover:scale-100 hover:-translate-y-1  text-white flex items-center justify-center hover:opacity-90 transition"
               >
                 <i className="fab fa-youtube text-lg"></i>
                 <span className="sr-only">YouTube</span>
@@ -79,7 +79,7 @@ const Navbar = () => {
           <IonIcon
             icon={menuOpen ? close : menu}
             onClick={() => setMenuOpen(!menuOpen)}
-            className="text-[30px] cursor-pointer md:hidden"
+            className="text-white z-50 text-[30px] cursor-pointer md:hidden"
           />
         </div>
       </nav>

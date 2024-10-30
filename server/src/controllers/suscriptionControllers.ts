@@ -72,7 +72,7 @@ export const createSubscription = asyncHandler(
 export const fetchAllSubscriptions = asyncHandler(
   async (_request: Request, response: Response, next: NextFunction) => {
     const subscriptions = await prisma.subscription.findMany({
-      include: { user: true },
+      include: { user: true, course: true },
     });
 
     if (!subscriptions) {

@@ -44,3 +44,38 @@ export const checkAuth = async (): Promise<User | null> => {
     return null;
   }
 };
+
+export const forgetPassword = async (email: string): Promise<string | null> => {
+  try {
+    const response = await apiClient.post<ApiResponse<any>>(
+      "/forget-password",
+      { email }
+    );
+    if (response.data.success) {
+      return response.data.message;
+    }
+    return null;
+  } catch (error) {
+    handleError(error);
+    return null;
+  }
+};
+
+export const resetPassword = async (
+  newPassword: string,
+  confirmPassword: string
+): Promise<string | null> => {
+  try {
+    const response = await apiClient.post<ApiResponse<any>>("/reset-password", {
+      newPassword,
+      confirmPassword,
+    });
+    if (response.data.success) {
+      return response.data.message;
+    }
+    return null;
+  } catch (error) {
+    handleError(error);
+    return null;
+  }
+};

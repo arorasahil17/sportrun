@@ -10,10 +10,12 @@ const Checkout = React.lazy(() => import("../pages/Checkout"));
 const EnrolledCourses = React.lazy(
   () => import("../pages/User/EnrolledCourses")
 );
+const ForgetPassword = React.lazy(() => import("../components/ForgetPassword"));
+const ResetPassword = React.lazy(() => import("../components/ResetPassword"));
 
 export const navLinks: NavLinks = [
   { name: "home", path: "/" },
-  { name: "courses", path: "/courses" },
+  { name: "subscription", path: "/subscription" },
   { name: "testimonials", path: "/testimonials" },
   { name: "about us", path: "/about" },
   { name: "blog", path: "/blog" },
@@ -25,8 +27,18 @@ export const routes: Routes = [
   { name: "Signup", path: "/signup", component: Signup },
   { name: "Dashboard", path: "/dashboard/*", component: Dashboard },
   { name: "Admin", path: "/admin/*", component: Admin },
-  { name: "Courses", path: "/courses", component: Courses },
+  { name: "Courses", path: "/subscription", component: Courses },
   { name: "Checkout", path: "/checkout/:id", component: Checkout },
+  {
+    name: "ResetPassword",
+    path: "/reset-password",
+    component: ResetPassword,
+  },
+  {
+    name: "ForgetPassword",
+    path: "/forget-password",
+    component: ForgetPassword,
+  },
 ];
 
 export const userDashboardRoutes: Routes = [
