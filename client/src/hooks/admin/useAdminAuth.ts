@@ -14,6 +14,7 @@ const useAdminAuth = () => {
         }
         return null;
       } catch (error) {
+        console.log("error", error);
         handleError(error);
         return null;
       }

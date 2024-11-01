@@ -14,8 +14,6 @@ const EnrolledCourses = () => {
 
   const courses = user?.subscriptions;
 
-  console.log(useSelector((state: StoreState) => state.userReducer.user));
-
   const handleDownload = async (videoUrl: string) => {
     try {
       const response = await fetch(
@@ -68,7 +66,8 @@ const EnrolledCourses = () => {
         </div>
 
         {/* Action Buttons */}
-        {subscription.Cancellation.subscriptionId === subscription.id ? (
+        {subscription.Cancellation &&
+        subscription.Cancellation.subscriptionId === subscription.id ? (
           <div>
             <button
               className="bg-red-500 text-white px-4 py-2 rounded-lg disabled:bg-red-400"
@@ -83,7 +82,7 @@ const EnrolledCourses = () => {
               className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
               onClick={() => handleDownload(subscription.course.courseVideoUrl)}
             >
-              Download Course Video
+              Download Subscription Video
             </button>
             <Link
               to={`/dashboard/cancel-subscription/${subscription.id}`}
@@ -111,7 +110,7 @@ const EnrolledCourses = () => {
                 : "bg-gray-200"
             } rounded-lg hover:bg-blue-600`}
           >
-            Enrolled Courses (3)
+            Enrolled Subscriptions (3)
           </button>
           <button
             onClick={() => setActiveTab("active")}
@@ -119,7 +118,7 @@ const EnrolledCourses = () => {
               activeTab === "active" ? "bg-blue-500 text-white" : "bg-gray-200"
             } rounded-lg hover:bg-blue-600`}
           >
-            Active Courses (3)
+            Active Subscriptions (3)
           </button>
           <button
             onClick={() => setActiveTab("completed")}
@@ -129,7 +128,7 @@ const EnrolledCourses = () => {
                 : "bg-gray-200"
             } rounded-lg hover:bg-blue-600`}
           >
-            Completed Courses
+            Completed Subscriptions
           </button>
         </div>
 

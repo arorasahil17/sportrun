@@ -36,7 +36,6 @@ const useUpdateRecord = <T extends SessionFormData>(
 
   const { mutate, status, isPending } = useMutation<string | null, Error, T>({
     mutationFn: (data) => args.mutationFn(args.path, data),
-
     onSuccess: (message) => {
       if (message) {
         toast.success(message);

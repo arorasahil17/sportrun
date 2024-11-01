@@ -91,21 +91,19 @@ export const checkAdminAuth = asyncHandler(
     response: Response,
     next: NextFunction
   ) => {
-    const userPayload = request.admin as JwtPayloadWithUsername;
+    const adminPayload = request.admin as JwtPayloadWithUsername;
 
-    console.log(userPayload);
+    if (adminPayload && typeof adminPayload.username === "string") {
+      // Destructure the username from the payload
+      const { username } = adminPayload;
 
-    if (userPayload && typeof userPayload.username === "string") {
-      // Destructure the email from the payload
-      const { username } = userPayload;
-
-      // Query the database to find the user
-      const user = await prisma.admin.findUnique({
+      // Query the database to find the admin
+      const admin = await prisma.admin.findUnique({
         where: { username },
       });
 
-      // If user doesn't exist, return a 404 error
-      if (!user) {
+      // If admin doesn't exist, return a 404 error
+      if (!admin) {
         const error: AsyncError = {
           statusCode: 404,
           message: `No account found with the email: ${username}`,
@@ -113,14 +111,14 @@ export const checkAdminAuth = asyncHandler(
         return next(error);
       }
 
-      // Return success response if user is authenticated
+      // Return success response if admin is authenticated
       return response.status(200).json({
         success: true,
         message: "Logged in successfully",
-        data: user,
+        data: admin,
       });
     } else {
-      // If the user is not logged in or no email found in the token
+      // If the admin is not logged in or no username found in the token
       const error: AsyncError = {
         statusCode: 401,
         message: "You are not logged in. Please log in to continue.",

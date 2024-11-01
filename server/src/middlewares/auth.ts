@@ -21,7 +21,6 @@ export const authenticateUser = (
   const token =
     request.cookies.token || request.headers.authorization?.split(" ")[1];
 
-  console.log(token);
   if (!token) {
     const error: AsyncError = {
       statusCode: 401,
@@ -72,14 +71,13 @@ export const authenticateAdmin = (
     // Verify the token
     const decoded = jwt.verify(token, JWT_SECRET);
 
-    // Attach the decoded user info to the request object
+    // Attach the decoded admin info to the request object
     if (typeof decoded === "string") {
-      request.user = decoded;
+      request.admin = decoded;
     } else {
       request.admin = decoded as JwtPayloadWithUsername;
     }
 
-    // Continue to the next middleware or route handler
     next();
   } catch (error) {
     const err: AsyncError = {

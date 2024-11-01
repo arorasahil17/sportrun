@@ -9,6 +9,6 @@ import { router } from "../utils";
 router
   .post("/admin", createAdmin)
   .post("/login/admin", loginAdmin)
-  .post("/admin/auth", authenticateAdmin, checkAdminAuth);
+  .get("/admin/auth", authenticateAdmin, checkAdminAuth);
 
 export default router;

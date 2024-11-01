@@ -54,9 +54,9 @@ const Sidebar = () => {
             </li>
             <li>
               <Link
-                to="/dashboard/courses"
+                to="/dashboard/subscriptions"
                 className={`block py-2 px-4 text-center md:text-left ${
-                  pathname === "/dashboard/courses"
+                  pathname === "/dashboard/subscriptions"
                     ? "bg-red-500 text-white"
                     : ""
                 } hover:bg-red-600 hover:text-white`}
@@ -93,6 +93,7 @@ const Sidebar = () => {
         </nav>
       </aside>
 
+      <div className="w-[0.10rem] bg-red-500"></div>
       {/* Main Content */}
       <main className="flex-1 bg-[#171E30] p-8">
         <Outlet />

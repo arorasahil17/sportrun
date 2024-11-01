@@ -10,13 +10,13 @@ function PurchasedSubscriptions() {
   });
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
+    <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-4 text-red-500">
         Purchased Subscription
       </h2>
       <div className="relative overflow-x-auto">
-        <table className="min-w-full text-sm text-left text-gray-500">
-          <thead className="text-xs text-red-500 uppercase bg-gray-50">
+        <table className="min-w-full  text-sm text-left text-gray-500">
+          <thead className="text-xs bg-gray-700 text-red-500 uppercase">
             <tr>
               <th className="px-6 py-3">ID</th>
               <th className="px-6 py-3">Subscription Name</th>
@@ -29,7 +29,7 @@ function PurchasedSubscriptions() {
               subscriptions.map((subscription) => (
                 <tr
                   key={subscription.id}
-                  className="bg-white border-b text-black hover:bg-gray-100"
+                  className="bg-gray-700 text-black border-b hover:bg-gray-500"
                 >
                   <td className="px-6 py-4">{subscription.id}</td>
                   <td className="px-6 py-4">{subscription.course.title}</td>

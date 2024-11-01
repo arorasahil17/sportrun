@@ -221,7 +221,9 @@ export const forgetPassword = asyncHandler(
     // const resetUrl = `${request.protocol}://${request.get(
     //   "host"
     // )}/api/auth/reset-password/${resetToken}`;
-    const resetUrl = `${process.env.CLIENT_URL}/reset-password?token=${resetToken}`;
+    const resetUrl = `${request.protocol}://${request.get(
+      "host"
+    )}/reset-password?token=${resetToken}`;
 
     console.log(resetUrl);
     // Send the email

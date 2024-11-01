@@ -25,13 +25,12 @@ const Admin = () => {
 
   const { data, isPending, isError } = useAdminAuth();
 
-  console.log("data", data);
-
   useEffect(() => {
     if (data) {
       dispatch(setAdmin(data));
+      navigate("/admin");
     }
-  }, [data, isError, dispatch]);
+  }, [data, isError, dispatch, admin]);
 
   useEffect(() => {
     if (!admin) {

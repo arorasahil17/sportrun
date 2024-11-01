@@ -47,7 +47,11 @@ export const routes: Routes = [
 
 export const userDashboardRoutes: Routes = [
   { name: "Profile", path: "/profile", component: Profile },
-  { name: "Enrolled Courses", path: "/courses", component: EnrolledCourses },
+  {
+    name: "Enrolled Courses",
+    path: "/subscriptions",
+    component: EnrolledCourses,
+  },
   { name: "Sessions", path: "/upcoming/sessions", component: Sessions },
   {
     name: "Cancel Subscription",

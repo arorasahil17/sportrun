@@ -125,6 +125,7 @@ const Sidebar = () => {
       </aside>
 
       {/* Main Content */}
+      <div className="w-[0.10rem] bg-red-500"></div>
       {/* Main Content */}
       <main className="flex-1 bg-[#171E30] text-white p-8">
         <Outlet />
