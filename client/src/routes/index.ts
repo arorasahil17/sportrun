@@ -16,6 +16,8 @@ const Sessions = React.lazy(() => import("../pages/User/Sessions"));
 const CancelSubscription = React.lazy(
   () => import("../pages/User/CancelSubscription")
 );
+const PaymentSucces = React.lazy(() => import("../pages/PaymentSuccess"));
+const PaymentFailure = React.lazy(() => import("../pages/PaymentFailure"));
 
 export const navLinks: NavLinks = [
   { name: "home", path: "/" },
@@ -42,6 +44,16 @@ export const routes: Routes = [
     name: "ForgetPassword",
     path: "/forget-password",
     component: ForgetPassword,
+  },
+  {
+    name: "Payment success",
+    path: "/payment/success",
+    component: PaymentSucces,
+  },
+  {
+    name: "Payment failure",
+    path: "/payment/failure",
+    component: PaymentFailure,
   },
 ];
 

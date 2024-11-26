@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Subscription } from "../../types";
 import { useSelector } from "react-redux";
 import { StoreState } from "../../lib/redux/store";
@@ -12,28 +12,35 @@ const EnrolledCourses = () => {
   const [activeTab, setActiveTab] = useState("enrolled");
   const user = useSelector((state: StoreState) => state.userReducer.user);
 
-  const courses = user?.subscriptions;
+  const courses = useMemo(() => {
+    const activeSubscriptions = user?.subscriptions.filter(
+      (subscription) =>
+        subscription.paymentStatus &&
+        subscription.paymentStatus.toLocaleLowerCase() === "completed"
+    );
+    return activeSubscriptions;
+  }, [user]);
 
-  const handleDownload = async (videoUrl: string) => {
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/${videoUrl}`
-      );
-      console.log(response);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const blob = await response.blob();
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.setAttribute("download", videoUrl.split("/").pop() || "video.mp4");
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (error) {
-      console.error("Download failed:", error);
-    }
-  };
+  // const handleDownload = async (videoUrl: string) => {
+  //   try {
+  //     const response = await fetch(
+  //       `${import.meta.env.VITE_API_URL}/${videoUrl}`
+  //     );
+  //     console.log(response);
+  //     if (!response.ok) {
+  //       throw new Error("Network response was not ok");
+  //     }
+  //     const blob = await response.blob();
+  //     const link = document.createElement("a");
+  //     link.href = URL.createObjectURL(blob);
+  //     link.setAttribute("download", videoUrl.split("/").pop() || "video.mp4");
+  //     document.body.appendChild(link);
+  //     link.click();
+  //     document.body.removeChild(link);
+  //   } catch (error) {
+  //     console.error("Download failed:", error);
+  //   }
+  // };
 
   const renderCourses = (subscriptionList: Subscription[] | undefined) => {
     return subscriptionList?.map((subscription, index) => (
@@ -78,12 +85,12 @@ const EnrolledCourses = () => {
           </div>
         ) : (
           <div className="flex flex-col space-y-2 ">
-            <button
+            {/* <button
               className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
               onClick={() => handleDownload(subscription.course.courseVideoUrl)}
             >
               Download Subscription Video
-            </button>
+            </button> */}
             <Link
               to={`/dashboard/cancel-subscription/${subscription.id}`}
               className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
@@ -110,7 +117,7 @@ const EnrolledCourses = () => {
                 : "bg-gray-200"
             } rounded-lg hover:bg-blue-600`}
           >
-            Enrolled Subscriptions (3)
+            Enrolled Subscriptions {courses?.length}
           </button>
           <button
             onClick={() => setActiveTab("active")}

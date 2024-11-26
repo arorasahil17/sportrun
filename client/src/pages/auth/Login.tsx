@@ -11,23 +11,25 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state: StoreState) => state.userReducer.user);
-  const isAutheticated = localStorage.getItem("isAutheticated");
+  const isAutheticated = localStorage.getItem("isAuthenticated");
 
   useEffect(() => {
     if (isAutheticated || user) {
+      console.log("running auth effect");
       navigate("/dashboard");
     }
-  }, []);
+  }, [isAutheticated, user, navigate]);
 
   useEffect(() => {
     if (status === "success") {
+      console.log("running success effect");
       dispatch(setUser(data?.data));
-      localStorage.setItem("isAutheticated", "true");
-      const redirectUrl = localStorage.getItem("redirectUrl");
-      navigate(redirectUrl ?? "/dashboard");
+      localStorage.setItem("isAuthenticated", "true");
+      const redirectUrl = localStorage.getItem("redirectUrl") || "/dashboard";
+      navigate(redirectUrl);
       localStorage.removeItem("redirectUrl");
     }
-  }, [status]);
+  }, [status, data, dispatch, navigate]);
 
   return (
     <main
@@ -67,7 +69,7 @@ const Login = () => {
                   {...register("email")}
                 />
                 {errors.email && errors.email.message && (
-                  <ErrorField message={errors.email.message} />
+                  <ErrorField message={errors.email.message} className="mt-2" />
                 )}
               </div>
 
@@ -85,7 +87,10 @@ const Login = () => {
                   {...register("password")}
                 />
                 {errors.password && errors.password.message && (
-                  <ErrorField message={errors.password.message} />
+                  <ErrorField
+                    message={errors.password.message}
+                    className="mt-2"
+                  />
                 )}
               </div>
             </div>

@@ -15,7 +15,8 @@ export default function App() {
 
   useEffect(() => {
     if (isError) {
-      console.log(error);
+      console.log("error", error);
+      localStorage.removeItem("isAuthenticated");
     }
 
     if (data) {

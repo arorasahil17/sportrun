@@ -1,7 +1,21 @@
 import { FaBookOpen, FaCheckCircle, FaPlay } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { StoreState } from "../../lib/redux/store";
+import { useMemo } from "react";
 
 const DashboardLayout = () => {
-  const enrolledSubscriptionCount = 3;
+  const user = useSelector((state: StoreState) => state.userReducer.user);
+  console.log("user", user);
+  const activeSubscriptions = useMemo(() => {
+    const activeSubscriptions = user?.subscriptions.filter(
+      (subscription) =>
+        subscription.paymentStatus &&
+        subscription.paymentStatus.toLocaleLowerCase() === "completed"
+    );
+    return activeSubscriptions;
+  }, [user]);
+
+  const enrolledSubscriptionCount = activeSubscriptions?.length;
   const activeSubscriptionCount = 3;
   const completedSubscriptionCount = 1;
 

@@ -43,7 +43,7 @@ const useCreateRecord = <
 ) => {
   const form = useForm<T>({ resolver: zodResolver(args.validationSchema) });
 
-  const { mutate, status, isPending } = useMutation<
+  const { mutate, status, isPending, data } = useMutation<
     ApiResponse<T> | null,
     Error,
     T
@@ -51,9 +51,14 @@ const useCreateRecord = <
     mutationFn: (data) => args.mutationFn(args.path, data),
 
     onSuccess: (data) => {
+      console.log(data);
+
       if (data && data.message) {
         toast.success(data.message);
         args.refetchData?.();
+        // window.location.href = (data.data as any).approvalUrl;
+        const subscriptionId = (data.data as any).subscription.id;
+        localStorage.setItem("subscriptionId", subscriptionId);
       } else {
         toast.error("An error occurred. Please try again.");
       }
@@ -68,12 +73,15 @@ const useCreateRecord = <
     [mutate]
   );
 
+  // console.log("response:", data);
+
   return {
     ...form,
     errors: form.formState.errors,
     status,
     isPending,
     onsubmit,
+    data,
   };
 };
 

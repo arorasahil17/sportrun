@@ -1,13 +1,20 @@
 import { useParams } from "react-router";
-import useGetCourse from "../../hooks/useGetCourse";
 import useUpdateCourse from "../../hooks/admin/useUpdateCourse";
 import { useEffect } from "react";
 import EditCourseForm from "../../components/admin/EditCourseForm";
+import useGetRecord from "../../hooks/useGetRecord";
+import { Course } from "../../types";
+import { fetchRecord } from "../../helpers/commonHelper";
 
 const EditCourse = () => {
   const params = useParams();
   const id = Number(params.id);
-  const { data: course } = useGetCourse();
+  const { data: course } = useGetRecord<Course>({
+    queryKey: [`course/${id}`],
+    queryFn: fetchRecord,
+    path: `/course`,
+    id,
+  });
 
   const { register, errors, handleSubmit, onsubmit, reset, status } =
     useUpdateCourse(id);

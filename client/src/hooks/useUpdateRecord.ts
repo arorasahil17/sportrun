@@ -5,6 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
 import { SessionFormData } from "../schemas/sessionSchema";
+import { CourseFormData } from "../schemas/adminSchema";
 
 type UpdateRecordFormData<T> = {
   mutationFn: (path: string, data: T) => Promise<string | null>;
@@ -29,7 +30,7 @@ type UpdateRecordFormData<T> = {
  * - {boolean} isPending - A boolean indicating if the mutation is pending.
  * - {function} onsubmit - A function to be called when the form is submitted.
  */
-const useUpdateRecord = <T extends SessionFormData>(
+const useUpdateRecord = <T extends SessionFormData | CourseFormData>(
   args: UpdateRecordFormData<T>
 ) => {
   const form = useForm<T>({ resolver: zodResolver(args.validationSchema) });

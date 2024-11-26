@@ -50,6 +50,7 @@ export interface Subscription {
   endDate: Date;
   purchaseDate: Date;
   numberOfDays: Date;
+  paymentStatus: string;
   Cancellation: Cancellation;
 }
 

@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { Router } from "express";
 import { createTransport } from "nodemailer";
 import crypto from "crypto";
+import { AsyncError } from "../types";
 
 export const prisma = new PrismaClient();
 
@@ -17,3 +18,8 @@ export const transporter = createTransport({
 
 export const generateResetToken = (): string =>
   crypto.randomBytes(32).toString("hex");
+
+export const createError = (
+  statusCode: number,
+  message: string
+): AsyncError => ({ statusCode, message });

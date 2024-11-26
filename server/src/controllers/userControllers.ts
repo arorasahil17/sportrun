@@ -86,6 +86,15 @@ export const signIn = asyncHandler(
       where: {
         email,
       },
+      include: {
+        subscriptions: {
+          include: {
+            course: true,
+            Cancellation: true,
+          },
+        },
+        enrolledCourses: true,
+      },
     });
     if (!user) {
       // If the user doesn't exist, return a 404 error

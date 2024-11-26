@@ -41,7 +41,7 @@ const Courses = () => {
               />
             ))
           ) : (
-            <h1 className="text-white">Courses not available</h1>
+            <h1 className="text-white">Subscription not available</h1>
           )}
         </div>
       </div>

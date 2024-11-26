@@ -7,5 +7,7 @@ declare namespace NodeJS {
     EMAIL_USER: string;
     EMAIL_PASS: string;
     CLIENT_URL: string;
+    PAYPAL_CLIENT_ID: string;
+    PAYPAL_CLIENT_SECRET: string;
   }
 }

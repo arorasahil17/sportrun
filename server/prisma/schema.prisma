@@ -53,6 +53,11 @@ model Subscription {
   endDate      DateTime?
   numberOfDays Int
   Cancellation Cancellation?
+
+  paypalTransactionId String?
+  paymentStatus       String?
+  paypalPayerId       String?
+  paypalPaymentDate   DateTime?
 }
 
 model Sessions {

@@ -42,14 +42,14 @@ const Navbar = () => {
 
         {/* Icon and Menu Icon */}
         <div className="flex justify-center items-center gap-2">
-          <div className="hidden sm:flex items-center justify-center space-x-4">
+          <div className=" sm:flex items-center justify-center space-x-4">
             <div className="flex space-x-4">
               {/* User Icon */}
               <Link
                 to={user ? "/dashboard" : "/login"}
-                className="w-10 h-10 rounded-full ease-in-out delay-150  bg-red-500 hover:bg-red-600  hover:scale-100 hover:-translate-y-1  text-white flex items-center justify-center hover:opacity-90 transition"
+                className="w-7 h-7 lg:w-10 lg:h-10  rounded-full ease-in-out delay-150 bg-red-500 hover:bg-red-600 hover:scale-100 hover:-translate-y-1 text-white flex items-center justify-center hover:opacity-90 transition"
               >
-                <i className="fas fa-user-alt text-lg"></i>
+                <i className="fas fa-user-alt text-sm lg:text-lg"></i>
                 <span className="sr-only">User-alt</span>
               </Link>
 
@@ -58,9 +58,9 @@ const Navbar = () => {
                 href="/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full ease-in-out delay-150  bg-red-500 hover:bg-red-600  hover:scale-100 hover:-translate-y-1  text-white flex items-center justify-center hover:opacity-90 transition"
+                className="w-7 h-7 lg:w-10 lg:h-10 rounded-full ease-in-out delay-150 bg-red-500 hover:bg-red-600 hover:scale-100 hover:-translate-y-1 text-white flex items-center justify-center hover:opacity-90 transition"
               >
-                <i className="fas fa-cart-plus text-lg"></i>
+                <i className="fas fa-cart-plus text-sm lg:text-lg"></i>
                 <span className="sr-only">Cart-plus</span>
               </a>
 
@@ -69,9 +69,9 @@ const Navbar = () => {
                 href="/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full ease-in-out delay-150  bg-red-500 hover:bg-red-600  hover:scale-100 hover:-translate-y-1  text-white flex items-center justify-center hover:opacity-90 transition"
+                className="w-7 h-7 lg:w-10 lg:h-10 rounded-full ease-in-out delay-150 bg-red-500 hover:bg-red-600 hover:scale-100 hover:-translate-y-1 text-white flex items-center justify-center hover:opacity-90 transition"
               >
-                <i className="fab fa-youtube text-lg"></i>
+                <i className="fab fa-youtube text-sm lg:text-lg"></i>
                 <span className="sr-only">YouTube</span>
               </a>
             </div>

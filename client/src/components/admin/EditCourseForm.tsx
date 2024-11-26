@@ -23,7 +23,7 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({
 }) => {
   return (
     <>
-      <div className="p-6 bg-white shadow-lg rounded-lg max-w-lg mx-auto mt-6">
+      <div className="p-6 bg-white text-black shadow-lg rounded-lg max-w-lg mx-auto mt-6">
         <h2 className="text-2xl font-semibold mb-4">Edit Course</h2>
         <form className="space-y-4" onSubmit={handleSubmit(onsubmit)}>
           <div>
@@ -51,7 +51,7 @@ const EditCourseForm: React.FC<EditCourseFormProps> = ({
           <div>
             <label className="block mb-2">Off Price</label>
             <input
-              type="number"
+              type="text"
               className={`${
                 errors.offPrice && "border-red-500"
               } w-full p-2 border border-gray-300 rounded outline-none`}

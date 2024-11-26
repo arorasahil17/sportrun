@@ -18,8 +18,6 @@ const CancelSubscription = () => {
       path: "/cancel/subscription",
     });
 
-  console.log(watch("subscriptionId"));
-
   useEffect(() => {
     if (id) {
       reset({

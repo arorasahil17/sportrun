@@ -6,7 +6,7 @@ import Loader from "../../common/Loader";
 import Sidebar from "./Sidebar";
 
 const Dashboard = () => {
-  const isAutheticated = localStorage.getItem("isAutheticated")!;
+  const isAutheticated = localStorage.getItem("isAuthenticated")!;
   const navigate = useNavigate();
 
   useEffect(() => {

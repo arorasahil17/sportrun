@@ -28,13 +28,31 @@ const Checkout = () => {
 
   const userId = useSelector((state: StoreState) => state.userReducer.user?.id);
 
-  const { handleSubmit, errors, onsubmit, isPending, reset, getValues } =
-    useCreateRecord<SubscriptionInputs>({
-      mutationFn: createRecord,
-      validationSchema: subscriptionSchema,
-      path: "/subscribe",
-      refetchData,
-    });
+  const {
+    handleSubmit,
+    errors,
+    onsubmit,
+    isPending,
+    reset,
+    getValues,
+    data,
+    status,
+  } = useCreateRecord<SubscriptionInputs>({
+    mutationFn: createRecord,
+    validationSchema: subscriptionSchema,
+    path: "/subscribe",
+    refetchData,
+  });
+
+  console.log("data", data);
+
+  useEffect(() => {
+    if (data && status === "success") {
+      const subscriptionId = (data.data as any).subscription.id;
+      localStorage.setItem("subscriptionId", subscriptionId);
+      window.location.href = (data.data as any).approvalUrl;
+    }
+  }, [data, status]);
 
   const handleDaysChange = (days: number) => {
     setDays(days);
