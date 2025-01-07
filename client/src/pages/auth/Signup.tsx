@@ -110,6 +110,21 @@ const Signup = () => {
             </div>
 
             <div className="mb-4">
+              <label className="block text-white text-sm mb-2" htmlFor="phone">
+                Phone
+              </label>
+              <input
+                className="appearance-none block w-full bg-white text-gray-700 border border-gray-400 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:border-red-500"
+                type="phone"
+                id="phone"
+                {...register("phone")}
+              />
+              {errors.email && errors.email.message && (
+                <ErrorField message={errors.email.message} />
+              )}
+            </div>
+
+            <div className="mb-4">
               <label
                 className="block text-white text-sm mb-2"
                 htmlFor="password"

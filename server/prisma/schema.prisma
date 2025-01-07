@@ -12,6 +12,7 @@ model User {
   name             String
   email            String         @unique
   password         String
+  phone            String         @unique
   username         String         @unique
   enrolledCourses  Course[]
   resetToken       String?
@@ -30,7 +31,7 @@ model Course {
   thumbnailUrl   String         @map("thumbnail_url")
   isPublished    Boolean        @default(true)
   subscriptions  Subscription[]
-  user           User?          @relation(fields: [userId], references: [id])
+  user           User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId         Int?
   Sessions       Sessions[]
 }

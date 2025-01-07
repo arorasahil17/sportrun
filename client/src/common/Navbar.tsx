@@ -31,9 +31,9 @@ const Navbar = () => {
                   key={index}
                   className="relative max-w-fit pr-3 md:pr-0 py-1 transition ease-in-out delay-150 hover:text-red-500 after:bg-red-400 after:absolute after:h-1 after:w-0 after:bottom-[-5px] after:left-0 hover:after:w-full after:transition-all after:delay-150"
                 >
-                  <a href={path} className="uppercase">
+                  <Link to={path} className="uppercase">
                     {name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -54,15 +54,6 @@ const Navbar = () => {
               </Link>
 
               {/* Cart Icon */}
-              <a
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-7 h-7 lg:w-10 lg:h-10 rounded-full ease-in-out delay-150 bg-red-500 hover:bg-red-600 hover:scale-100 hover:-translate-y-1 text-white flex items-center justify-center hover:opacity-90 transition"
-              >
-                <i className="fas fa-cart-plus text-sm lg:text-lg"></i>
-                <span className="sr-only">Cart-plus</span>
-              </a>
 
               {/* YouTube Icon */}
               <a

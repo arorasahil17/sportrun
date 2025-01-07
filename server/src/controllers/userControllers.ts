@@ -13,8 +13,15 @@ import jwt from "jsonwebtoken";
 export const signUp = asyncHandler(
   async (request: Request, response: Response, next: NextFunction) => {
     // Destructure inputs from the request body
-    const { firstName, lastName, password, email, username, confirmPassword } =
-      request.body as UserInputs;
+    const {
+      firstName,
+      lastName,
+      password,
+      email,
+      phone,
+      username,
+      confirmPassword,
+    } = request.body as UserInputs;
 
     // Check if a user already exists with the given email or username
     const userExists = await prisma.$transaction(async (prisma) => {
@@ -64,6 +71,7 @@ export const signUp = asyncHandler(
         email,
         username,
         password: hashedPassword,
+        phone,
       },
     });
 

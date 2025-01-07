@@ -22,10 +22,10 @@ const PaymentFailure = React.lazy(() => import("../pages/PaymentFailure"));
 export const navLinks: NavLinks = [
   { name: "home", path: "/" },
   { name: "subscription", path: "/subscription" },
-  { name: "testimonials", path: "/testimonials" },
-  { name: "about us", path: "/about" },
-  { name: "blog", path: "/blog" },
-  { name: "contact us", path: "/contact" },
+  { name: "testimonials", path: "/" },
+  { name: "about us", path: "/" },
+  { name: "blog", path: "/" },
+  { name: "contact us", path: "/" },
 ];
 
 export const routes: Routes = [

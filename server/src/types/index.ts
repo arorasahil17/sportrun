@@ -11,6 +11,7 @@ export interface UserInputs {
   firstName: string;
   lastName: string;
   email: string;
+  phone: string;
   password: string;
   confirmPassword: string;
   username: string;

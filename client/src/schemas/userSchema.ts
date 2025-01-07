@@ -6,6 +6,7 @@ export const UserValidationSchema = z
     firstName: validateRequiredString("First name is required"),
     lastName: validateRequiredString("Last name is required"),
     email: validateEmail("Please enter a valid email address"),
+    phone: validateRequiredString("Phone is required"),
     username: validateRequiredString("Username is required"),
     password: validateRequiredString("Password is required"),
     confirmPassword: validateRequiredString("Please confirm your password"),

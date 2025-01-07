@@ -125,7 +125,7 @@ const EnrolledCourses = () => {
               activeTab === "active" ? "bg-blue-500 text-white" : "bg-gray-200"
             } rounded-lg hover:bg-blue-600`}
           >
-            Active Subscriptions (3)
+            Active Subscriptions (0)
           </button>
           <button
             onClick={() => setActiveTab("completed")}

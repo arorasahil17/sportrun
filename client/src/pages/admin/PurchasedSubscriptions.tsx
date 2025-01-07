@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { fetchAllRecords } from "../../helpers/commonHelper";
 import useRecords from "../../hooks/useRecords";
 import { Subscription } from "../../types";
@@ -8,6 +9,13 @@ function PurchasedSubscriptions() {
     queryFn: fetchAllRecords,
     path: "/subscriptions",
   });
+
+  const paidSubscriptions = useMemo(() => {
+    const paidSubscriptions = subscriptions?.filter(
+      (subscription) => subscription.paymentStatus === "COMPLETED"
+    );
+    return paidSubscriptions;
+  }, [subscriptions]);
 
   return (
     <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -25,11 +33,11 @@ function PurchasedSubscriptions() {
             </tr>
           </thead>
           <tbody>
-            {subscriptions &&
-              subscriptions.map((subscription) => (
+            {paidSubscriptions &&
+              paidSubscriptions.map((subscription) => (
                 <tr
                   key={subscription.id}
-                  className="bg-gray-700 text-black border-b hover:bg-gray-500"
+                  className="bg-gray-700 text-white border-b hover:bg-gray-500"
                 >
                   <td className="px-6 py-4">{subscription.id}</td>
                   <td className="px-6 py-4">{subscription.course.title}</td>

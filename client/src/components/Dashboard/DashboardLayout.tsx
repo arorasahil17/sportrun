@@ -16,8 +16,8 @@ const DashboardLayout = () => {
   }, [user]);
 
   const enrolledSubscriptionCount = activeSubscriptions?.length;
-  const activeSubscriptionCount = 3;
-  const completedSubscriptionCount = 1;
+  const activeSubscriptionCount = 0;
+  const completedSubscriptionCount = 0;
 
   return (
     <div className="flex flex-col md:flex-row justify-between items-center md:items-start space-y-6 md:space-y-0 md:space-x-6 p-6">
