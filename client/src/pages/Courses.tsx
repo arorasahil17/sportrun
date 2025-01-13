@@ -28,7 +28,7 @@ const Courses = () => {
   return (
     <div className="bg-[#0E1119]">
       <div className="container mx-auto px-4 py-6">
-        <h1 className="text-4xl text-red-500 font-medium text-center mb-6">
+        <h1 className="text-4xl text-red-500 font-bold text-center mb-6">
           Available Subscriptions
         </h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -41,7 +41,9 @@ const Courses = () => {
               />
             ))
           ) : (
-            <h1 className="text-white">Subscription not available</h1>
+            <h1 className="text-white text-center font-bold text-2xl mt-4">
+              Subscription not available
+            </h1>
           )}
         </div>
       </div>
